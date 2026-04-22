@@ -176,9 +176,16 @@ export default function MediaGameClient({ level, totalLevels }: Props) {
   const yoursMobileCSS = getCSSAtViewport(userInput, MOBILE_W, level.baseCSS);
   const yoursDesktopCSS = getCSSAtViewport(userInput, DESKTOP_W, level.baseCSS);
 
-  // Target CSS
-  const targetMobileCSS = { ...level.baseCSS, ...level.targetMobileCSS };
-  const targetDesktopCSS = level.baseCSS;
+  // Target CSS:
+  // max-width → media applies at MOBILE, desktop stays as base
+  // min-width → media applies at DESKTOP, mobile stays as base
+  const isMinWidth = level.breakpointType === "min-width";
+  const targetMobileCSS = isMinWidth
+    ? level.baseCSS
+    : { ...level.baseCSS, ...level.targetMobileCSS };
+  const targetDesktopCSS = isMinWidth
+    ? { ...level.baseCSS, ...level.targetMobileCSS }
+    : level.baseCSS;
 
   const isLast = level.id === totalLevels;
 
@@ -203,7 +210,7 @@ export default function MediaGameClient({ level, totalLevels }: Props) {
   });
 
   const handleCheck = useCallback(() => {
-    const ok = checkMediaSolution(userInput, level.checkProps);
+    const ok = checkMediaSolution(userInput, level.checkProps, level.breakpointType);
     if (ok) {
       setSolved(true); playSuccess();
       confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 }, colors: ["#f43f5e", "#fb923c", "#f59e0b", "#0ea5e9"] });
@@ -337,16 +344,21 @@ export default function MediaGameClient({ level, totalLevels }: Props) {
 
         {/* Right: 2×2 preview grid */}
         <div className="flex-1 p-5 overflow-auto" style={{ background: "var(--bg)" }}>
-          {/* Viewport labels */}
+          {/* Viewport labels — highlight which side the breakpoint fires on */}
           <div className="grid grid-cols-2 gap-4 mb-2">
-            <div className="text-xs font-bold text-center px-3 py-1.5 rounded-full"
-              style={{ background: "rgba(244,63,94,0.08)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.2)" }}>
-              📱 Mobile ({MOBILE_W}px)
-            </div>
-            <div className="text-xs font-bold text-center px-3 py-1.5 rounded-full"
-              style={{ background: "var(--card)", color: "var(--muted)", border: "1px solid var(--border)" }}>
-              🖥 Desktop ({DESKTOP_W}px)
-            </div>
+            {[
+              { label: `📱 Mobile (${MOBILE_W}px)`, active: !isMinWidth },
+              { label: `🖥 Desktop (${DESKTOP_W}px)`, active: isMinWidth },
+            ].map(({ label, active }) => (
+              <div key={label} className="text-xs font-bold text-center px-3 py-1.5 rounded-full"
+                style={{
+                  background: active ? "rgba(244,63,94,0.08)" : "var(--card)",
+                  color: active ? "#f43f5e" : "var(--muted)",
+                  border: `1px solid ${active ? "rgba(244,63,94,0.2)" : "var(--border)"}`,
+                }}>
+                {label} {active && "← media fires here"}
+              </div>
+            ))}
           </div>
 
           <div className="grid grid-cols-2 gap-4">

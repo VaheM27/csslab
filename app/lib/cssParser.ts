@@ -216,18 +216,28 @@ function conditionApplies(block: MediaBlock, width: number): boolean {
   return block.maxWidth !== undefined || block.minWidth !== undefined;
 }
 
-/** Check if user's media query produces the expected CSS at mobile (375px) */
+/**
+ * Check if user's media query produces the expected CSS.
+ * - max-width: block must apply at 375px (mobile) and NOT at 1024px (desktop)
+ * - min-width: block must apply at 1024px (desktop) and NOT at 375px (mobile)
+ */
 export function checkMediaSolution(
   input: string,
-  checkProps: Record<string, string[]>
+  checkProps: Record<string, string[]>,
+  breakpointType: "max-width" | "min-width" = "max-width"
 ): boolean {
   const blocks = parseMediaBlocks(input);
   if (blocks.length === 0) return false;
   for (const block of blocks) {
-    // Block must apply at 375px (mobile)
-    if (!conditionApplies(block, 375)) continue;
-    // Block must NOT apply at 1024px (desktop)
-    if (conditionApplies(block, 1024)) continue;
+    if (breakpointType === "min-width") {
+      // Block must apply at desktop (1024px) but NOT at mobile (375px)
+      if (!conditionApplies(block, 1024)) continue;
+      if (conditionApplies(block, 375)) continue;
+    } else {
+      // Block must apply at mobile (375px) but NOT at desktop (1024px)
+      if (!conditionApplies(block, 375)) continue;
+      if (conditionApplies(block, 1024)) continue;
+    }
     if (checkSolution(block.properties, checkProps)) return true;
   }
   return false;
