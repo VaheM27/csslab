@@ -308,7 +308,13 @@ export default function Home() {
 
         <footer className="text-center py-6 text-sm"
           style={{ color: "var(--muted)", borderTop: "1px solid var(--border)" }}>
-          Built with ❤️ to make CSS learning actually fun · <span style={{ color: "var(--accent)" }}>CSSLab</span>
+          Built with ❤️ by{" "}
+          <a href="https://vahemn.dev/" target="_blank" rel="noopener noreferrer"
+            className="font-semibold transition-all hover:opacity-70"
+            style={{ color: "var(--accent)" }}>
+            Vahe Mnatsakanyan
+          </a>
+          {" "}· <span style={{ color: "var(--accent)" }}>CSSLab</span>
         </footer>
       </main>
     </>
