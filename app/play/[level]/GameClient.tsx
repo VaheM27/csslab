@@ -317,8 +317,30 @@ export default function GameClient({ level, totalLevels }: Props) {
   }, [parsed, level]);
 
   const handleShare = () => {
-    navigator.clipboard.writeText(window.location.href).catch(() => {});
-    setToast("🔗 Link copied!");
+    const url = window.location.href;
+
+    const fallbackCopy = () => {
+      try {
+        const el = document.createElement("textarea");
+        el.value = url;
+        el.style.cssText = "position:fixed;opacity:0;top:0;left:0";
+        document.body.appendChild(el);
+        el.select();
+        const ok = document.execCommand("copy");
+        document.body.removeChild(el);
+        setToast(ok ? "🔗 Link copied!" : "❌ Copy failed");
+      } catch {
+        setToast("❌ Copy failed");
+      }
+    };
+
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(url)
+        .then(() => setToast("🔗 Link copied!"))
+        .catch(fallbackCopy);
+    } else {
+      fallbackCopy();
+    }
   };
 
   const handleShowSolution = () => {
