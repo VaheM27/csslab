@@ -168,47 +168,59 @@ function SuccessOverlay({ onNext, isLast, explanation, streak }: {
     .replace(/`(.*?)`/g, '<code style="color:var(--accent);font-family:var(--font-mono);font-size:11px;background:var(--accent-dim);padding:1px 5px;border-radius:4px">$1</code>');
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-      className="absolute inset-0 z-30 flex flex-col items-center justify-center rounded-xl p-6 text-center"
-      style={{ background: "rgba(255,255,255,0.96)", backdropFilter: "blur(8px)" }}>
-      <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}
-        transition={{ type: "spring", stiffness: 300, delay: 0.1 }}
-        className="text-4xl mb-2">🎉</motion.div>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-6"
+      style={{ background: "rgba(0,0,0,0.45)", backdropFilter: "blur(6px)" }}>
+      <motion.div
+        initial={{ scale: 0.88, opacity: 0, y: 24 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.88, opacity: 0, y: 24 }}
+        transition={{ type: "spring", stiffness: 260, damping: 22 }}
+        className="rounded-3xl p-8 max-w-sm w-full text-center"
+        style={{ background: "var(--surface)", border: "1px solid var(--border)", boxShadow: "var(--shadow-lg)" }}>
 
-      <motion.h3 initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }} className="font-black text-lg mb-1"
-        style={{ color: "var(--success)" }}>Level Cleared!</motion.h3>
+        <div className="text-5xl mb-3">🎉</div>
 
-      {streak > 1 && (
-        <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.25 }}
-          className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold mb-2"
-          style={{ background: "rgba(251,191,36,0.15)", color: "#d97706", border: "1px solid rgba(251,191,36,0.3)" }}>
-          🔥 {streak} level streak!
-        </motion.div>
-      )}
+        <h3 className="font-black text-2xl mb-1" style={{ color: "var(--accent)" }}>
+          Level Cleared!
+        </h3>
 
-      <motion.p initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-        className="text-sm leading-relaxed mb-5 max-w-xs"
-        style={{ color: "var(--muted)" }}
-        dangerouslySetInnerHTML={{ __html: richExplanation }} />
-
-      <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}>
-        {isLast ? (
-          <Link href="/play"
-            className="px-6 py-3 rounded-xl font-bold transition-all hover:scale-105 inline-block"
-            style={{ background: "var(--success)", color: "#fff" }}>
-            🏆 All Done!
-          </Link>
-        ) : (
-          <button onClick={onNext}
-            className="px-6 py-3 rounded-xl font-bold transition-all hover:scale-105"
-            style={{ background: "var(--accent)", color: "#fff" }}>
-            Next Level →
-          </button>
+        {streak > 1 && (
+          <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.15 }}
+            className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold mb-3"
+            style={{ background: "rgba(251,191,36,0.15)", color: "#d97706", border: "1px solid rgba(251,191,36,0.3)" }}>
+            🔥 {streak} level streak!
+          </motion.div>
         )}
+
+        <motion.p initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15 }}
+          className="text-sm leading-relaxed mb-6 mt-3"
+          style={{ color: "var(--muted)" }}
+          dangerouslySetInnerHTML={{ __html: richExplanation }} />
+
+        <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25 }} className="flex flex-col gap-2">
+          {isLast ? (
+            <Link href="/play"
+              className="w-full py-3.5 rounded-xl font-bold transition-all hover:opacity-90 active:scale-95 text-center block"
+              style={{ background: "var(--success)", color: "#fff" }}>
+              🏆 All Done!
+            </Link>
+          ) : (
+            <button onClick={onNext}
+              className="w-full py-3.5 rounded-xl font-bold transition-all hover:opacity-90 active:scale-95"
+              style={{ background: "var(--accent)", color: "#fff" }}>
+              Next Level →
+            </button>
+          )}
+          <Link href="/play"
+            className="w-full py-2.5 rounded-xl text-sm font-medium transition-all hover:opacity-70 text-center block"
+            style={{ color: "var(--muted)", border: "1px solid var(--border)" }}>
+            Back to Levels
+          </Link>
+        </motion.div>
       </motion.div>
     </motion.div>
   );
@@ -458,26 +470,26 @@ export default function GameClient({ level, totalLevels }: Props) {
             <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--muted)" }}>
               ✏️ Yours
             </div>
-            <div className="relative">
-              <FlexContainer
-                containerCSS={previewContainerCSS}
-                itemCSS={previewItemCSS}
-                items={level.items}
-                height={level.containerHeight}
-                showAxis={showAxis}
-              />
-              <AnimatePresence>
-                {solved && (
-                  <SuccessOverlay
-                    explanation={level.explanation}
-                    onNext={() => { window.location.href = `/play/${level.id + 1}`; }}
-                    isLast={isLast}
-                    streak={streak}
-                  />
-                )}
-              </AnimatePresence>
-            </div>
+            <FlexContainer
+              containerCSS={previewContainerCSS}
+              itemCSS={previewItemCSS}
+              items={level.items}
+              height={level.containerHeight}
+              showAxis={showAxis}
+            />
           </div>
+
+          {/* Success overlay (full-screen modal) */}
+          <AnimatePresence>
+            {solved && (
+              <SuccessOverlay
+                explanation={level.explanation}
+                onNext={() => { window.location.href = `/play/${level.id + 1}`; }}
+                isLast={isLast}
+                streak={streak}
+              />
+            )}
+          </AnimatePresence>
         </div>
       </div>
 
