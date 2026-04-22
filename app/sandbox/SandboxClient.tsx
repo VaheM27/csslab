@@ -110,7 +110,7 @@ export default function SandboxClient() {
               style={{
                 background: "var(--card)",
                 border: "1px solid var(--border)",
-                color: "var(--cyan)",
+                color: "var(--accent-light)",
                 fontFamily: "var(--font-mono)",
                 lineHeight: 1.8,
                 minHeight: 200,
@@ -195,7 +195,7 @@ export default function SandboxClient() {
                   >
                     <code
                       className="text-sm font-bold block mb-1"
-                      style={{ color: "var(--cyan)", fontFamily: "var(--font-mono)" }}
+                      style={{ color: "var(--accent-light)", fontFamily: "var(--font-mono)" }}
                     >
                       {prop}
                     </code>

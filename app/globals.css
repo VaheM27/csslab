@@ -1,86 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 @import "tailwindcss";
 
 :root {
-  --bg: #0a0a16;
-  --surface: #13132e;
-  --card: #1c1c3a;
-  --border: rgba(255, 255, 255, 0.08);
-  --purple: #7c6af7;
-  --purple-light: #a799ff;
-  --cyan: #22d3ee;
-  --green: #4ade80;
-  --red: #f87171;
-  --text: #e2e8f0;
-  --muted: #64748b;
-}
+  /* Backgrounds */
+  --bg:        #0c111d;
+  --surface:   #111827;
+  --card:      #1a2236;
+  --card-hover:#1e2844;
 
-@theme inline {
-  --color-bg: var(--bg);
-  --color-surface: var(--surface);
-  --color-card: var(--card);
-  --color-purple: var(--purple);
-  --color-purple-light: var(--purple-light);
-  --color-cyan: var(--cyan);
-  --color-success: var(--green);
-  --color-error: var(--red);
-  --color-text: var(--text);
-  --color-muted: var(--muted);
-  --font-sans: var(--font-geist-sans);
+  /* Emerald accent (from portfolio) */
+  --accent:        #059669;
+  --accent-rgb:    5, 150, 105;
+  --accent-alt:    #0d9488;
+  --accent-light:  #34d399;
+  --accent-dim:    rgba(5, 150, 105, 0.15);
+
+  /* Cross-axis indicator — calm teal/blue */
+  --axis-cross: #38bdf8;
+
+  /* Text */
+  --text:      #f1f5f9;
+  --text-sec:  #cbd5e1;
+  --muted:     #64748b;
+  --muted-lt:  #94a3b8;
+
+  /* Borders */
+  --border:        rgba(255, 255, 255, 0.07);
+  --border-accent: rgba(5, 150, 105, 0.22);
+  --border-strong: rgba(5, 150, 105, 0.4);
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px  rgba(5, 150, 105, 0.06);
+  --shadow-md: 0 8px 30px rgba(5, 150, 105, 0.10);
+  --shadow-lg: 0 20px 60px rgba(5, 150, 105, 0.14);
+
+  /* Success / error */
+  --success: #4ade80;
+  --error:   #f87171;
+
+  /* Fonts */
+  --font-sans: "Inter", system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
-* {
-  box-sizing: border-box;
+@theme inline {
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
-html,
-body {
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
   background: var(--bg);
   color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: rgba(124, 106, 247, 0.4);
+  background: rgba(5, 150, 105, 0.35);
 }
 
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--surface);
-}
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--surface); }
 ::-webkit-scrollbar-thumb {
-  background: rgba(124, 106, 247, 0.5);
+  background: rgba(5, 150, 105, 0.4);
   border-radius: 3px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: var(--purple);
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* Utilities */
+.glow-accent {
+  box-shadow: var(--shadow-md);
+}
+
+.glass {
+  background: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  50%       { transform: translateY(-6px); }
 }
 
 @keyframes pulse-border {
-  0%, 100% { border-color: rgba(124, 106, 247, 0.4); }
-  50% { border-color: rgba(124, 106, 247, 0.9); }
+  0%, 100% { border-color: var(--border-accent); }
+  50%       { border-color: var(--border-strong); }
 }
 
-@keyframes slide-up {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-slide-up {
-  animation: slide-up 0.4s ease both;
-}
-
-.glow {
-  box-shadow: 0 0 30px rgba(124, 106, 247, 0.3);
-}
-
-.glow-green {
-  box-shadow: 0 0 30px rgba(74, 222, 128, 0.3);
-}
+.animate-slide-up { animation: slide-up 0.4s ease both; }

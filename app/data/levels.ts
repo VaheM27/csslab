@@ -26,13 +26,13 @@ export interface Level {
 }
 
 const COLORS = [
-  "#7c3aed",
+  "#059669",
+  "#0d9488",
   "#0891b2",
-  "#be185d",
-  "#c2410c",
   "#15803d",
-  "#b45309",
-  "#1d4ed8",
+  "#0369a1",
+  "#047857",
+  "#0e7490",
 ];
 
 function makeItems(count: number, options?: { heights?: number[] }): FlexItem[] {

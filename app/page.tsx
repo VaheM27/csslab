@@ -5,36 +5,32 @@ const features = [
   {
     icon: "⚡",
     title: "Live Preview",
-    description:
-      "See your CSS applied instantly as you type. No refresh needed.",
+    description: "See your CSS applied instantly as you type. No refresh needed.",
   },
   {
     icon: "📐",
     title: "Axis Visualization",
-    description:
-      "See the main axis and cross axis drawn on your layout in real time.",
+    description: "Main axis and cross axis drawn on your layout in real time.",
   },
   {
     icon: "💡",
     title: "Why It Works",
-    description:
-      "After each level, get a clear explanation of what happened and why.",
+    description: "Clear explanation after each level — not just the answer, but the reason.",
   },
   {
     icon: "🧪",
     title: "Sandbox Mode",
-    description:
-      "Free-play mode to experiment with any flex property combinations.",
+    description: "Free-play to experiment with any flex combination.",
   },
 ];
 
 const chapters = [
-  { index: 1, name: "The Basics", levels: 3, emoji: "🎯" },
-  { index: 2, name: "Main Axis", levels: 5, emoji: "↔️" },
-  { index: 3, name: "Cross Axis", levels: 4, emoji: "↕️" },
-  { index: 4, name: "Wrap & Gap", levels: 2, emoji: "🔀" },
-  { index: 5, name: "Item Properties", levels: 4, emoji: "🧩" },
-  { index: 6, name: "Real World", levels: 2, emoji: "🌍" },
+  { index: 1, name: "The Basics",       levels: 3,  emoji: "🎯" },
+  { index: 2, name: "Main Axis",        levels: 5,  emoji: "↔️" },
+  { index: 3, name: "Cross Axis",       levels: 4,  emoji: "↕️" },
+  { index: 4, name: "Wrap & Gap",       levels: 2,  emoji: "🔀" },
+  { index: 5, name: "Item Properties",  levels: 4,  emoji: "🧩" },
+  { index: 6, name: "Real World",       levels: 2,  emoji: "🌍" },
 ];
 
 export default function Home() {
@@ -42,71 +38,70 @@ export default function Home() {
     <>
       <Navbar />
       <main className="flex flex-col">
-        {/* Hero */}
+
+        {/* ── Hero ── */}
         <section
-          className="flex flex-col items-center justify-center text-center px-6 pt-40 pb-24 relative overflow-hidden"
+          className="relative flex flex-col items-center justify-center text-center px-6 pt-44 pb-28 overflow-hidden"
           style={{ minHeight: "100vh" }}
         >
-          {/* Background glow */}
+          {/* Subtle radial glow */}
           <div
-            className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
+            className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                "radial-gradient(circle, rgba(124,106,247,0.15) 0%, transparent 70%)",
+                "radial-gradient(ellipse 60% 50% at 50% 40%, rgba(5,150,105,0.1) 0%, transparent 70%)",
             }}
           />
 
+          {/* Badge */}
           <div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-8"
             style={{
-              background: "rgba(124,106,247,0.1)",
-              border: "1px solid rgba(124,106,247,0.3)",
-              color: "var(--purple-light)",
+              background: "rgba(5,150,105,0.1)",
+              border: "1px solid var(--border-accent)",
+              color: "var(--accent-light)",
             }}
           >
-            <span>✦</span> 20 Interactive Challenges
+            <span
+              className="w-1.5 h-1.5 rounded-full"
+              style={{ background: "var(--accent-light)" }}
+            />
+            20 Interactive Challenges
           </div>
 
+          {/* Headline */}
           <h1
-            className="text-5xl md:text-7xl font-black tracking-tight mb-6 leading-none"
+            className="text-5xl md:text-7xl font-black tracking-tight leading-none mb-5"
             style={{ color: "var(--text)" }}
           >
             Learn Flexbox
             <br />
-            <span
-              style={{
-                background: "linear-gradient(135deg, var(--purple), var(--cyan))",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              by Playing
-            </span>
+            <span style={{ color: "var(--accent-light)" }}>by Playing</span>
           </h1>
 
           <p
-            className="text-lg md:text-xl max-w-xl mb-10 leading-relaxed"
-            style={{ color: "var(--muted)" }}
+            className="text-lg max-w-lg mb-10 leading-relaxed"
+            style={{ color: "var(--muted-lt)" }}
           >
-            Master CSS Flexbox through hands-on challenges. See axis
-            visualization, get instant feedback, and understand{" "}
-            <em>why</em> it works — not just how.
+            Master CSS Flexbox through hands-on challenges. Live previews, axis
+            visualization, and clear explanations — not just the answer,{" "}
+            <em>the why</em>.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 items-center">
+          <div className="flex flex-col sm:flex-row gap-3 items-center">
             <Link
               href="/play/1"
-              className="px-8 py-4 rounded-xl font-bold text-lg transition-all hover:scale-105 glow"
-              style={{ background: "var(--purple)", color: "#fff" }}
+              className="px-7 py-3.5 rounded-xl font-semibold text-base transition-all hover:opacity-90 glow-accent"
+              style={{ background: "var(--accent)", color: "#fff" }}
             >
               Start Playing →
             </Link>
             <Link
               href="/sandbox"
-              className="px-8 py-4 rounded-xl font-semibold text-lg transition-all hover:opacity-80"
+              className="px-7 py-3.5 rounded-xl font-semibold text-base transition-all hover:bg-opacity-60"
               style={{
                 background: "var(--card)",
-                color: "var(--text)",
+                color: "var(--text-sec)",
                 border: "1px solid var(--border)",
               }}
             >
@@ -114,21 +109,24 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Mini flex demo */}
-          <div className="mt-16 w-full max-w-md">
-            <p className="text-xs mb-3 uppercase tracking-widest" style={{ color: "var(--muted)" }}>
+          {/* Live demo card */}
+          <div className="mt-16 w-full max-w-sm">
+            <p
+              className="text-xs mb-3 uppercase tracking-widest"
+              style={{ color: "var(--muted)" }}
+            >
               Live example
             </p>
             <div
-              className="rounded-xl p-4"
+              className="rounded-2xl p-5"
               style={{
                 background: "var(--card)",
                 border: "1px solid var(--border)",
               }}
             >
               <code
-                className="text-sm block mb-3"
-                style={{ color: "var(--cyan)", fontFamily: "var(--font-mono)" }}
+                className="text-xs block mb-4"
+                style={{ color: "var(--accent-light)", fontFamily: "var(--font-mono)" }}
               >
                 justify-content: space-between;
               </code>
@@ -137,23 +135,23 @@ export default function Home() {
                   display: "flex",
                   justifyContent: "space-between",
                   background: "var(--surface)",
-                  borderRadius: "8px",
+                  borderRadius: "10px",
                   padding: "12px",
                   height: "60px",
                 }}
               >
-                {["A", "B", "C", "D"].map((label, i) => (
+                {["A", "B", "C", "D"].map((l, i) => (
                   <div
                     key={i}
                     className="rounded-lg flex items-center justify-center font-bold text-sm"
                     style={{
-                      width: 40,
+                      width: 38,
                       height: 36,
-                      background: ["#7c3aed", "#0891b2", "#be185d", "#c2410c"][i],
+                      background: ["#059669", "#0d9488", "#0891b2", "#15803d"][i],
                       color: "#fff",
                     }}
                   >
-                    {label}
+                    {l}
                   </div>
                 ))}
               </div>
@@ -161,81 +159,83 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Features */}
-        <section className="px-6 py-24 max-w-5xl mx-auto w-full">
-          <h2
-            className="text-3xl font-bold text-center mb-4"
-            style={{ color: "var(--text)" }}
-          >
-            Better than Flexbox Froggy
-          </h2>
-          <p className="text-center mb-12" style={{ color: "var(--muted)" }}>
-            We built what was missing from every other flexbox game.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {features.map((f) => (
-              <div
-                key={f.title}
-                className="rounded-2xl p-6"
-                style={{
-                  background: "var(--card)",
-                  border: "1px solid var(--border)",
-                }}
-              >
-                <div className="text-3xl mb-3">{f.icon}</div>
-                <h3
-                  className="font-bold text-lg mb-2"
-                  style={{ color: "var(--text)" }}
-                >
-                  {f.title}
-                </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                  {f.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Chapters */}
+        {/* ── Features ── */}
         <section
           className="px-6 py-24"
           style={{ background: "var(--surface)" }}
         >
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-4xl mx-auto">
+            <p
+              className="text-xs font-semibold uppercase tracking-widest text-center mb-3"
+              style={{ color: "var(--accent)" }}
+            >
+              Why FlexLab
+            </p>
             <h2
-              className="text-3xl font-bold text-center mb-4"
+              className="text-3xl font-black text-center mb-12"
               style={{ color: "var(--text)" }}
             >
-              20 Levels. 6 Chapters.
+              Better than Flexbox Froggy
             </h2>
-            <p className="text-center mb-12" style={{ color: "var(--muted)" }}>
-              From zero to flex master — step by step.
-            </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-              {chapters.map((ch) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {features.map((f) => (
                 <div
-                  key={ch.index}
-                  className="rounded-xl p-5"
+                  key={f.title}
+                  className="rounded-2xl p-6 transition-all"
                   style={{
                     background: "var(--card)",
                     border: "1px solid var(--border)",
                   }}
                 >
-                  <div className="text-2xl mb-2">{ch.emoji}</div>
+                  <div className="text-2xl mb-3">{f.icon}</div>
+                  <h3 className="font-bold mb-1.5" style={{ color: "var(--text)" }}>
+                    {f.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted-lt)" }}>
+                    {f.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Chapters ── */}
+        <section className="px-6 py-24">
+          <div className="max-w-4xl mx-auto">
+            <p
+              className="text-xs font-semibold uppercase tracking-widest text-center mb-3"
+              style={{ color: "var(--accent)" }}
+            >
+              Curriculum
+            </p>
+            <h2
+              className="text-3xl font-black text-center mb-12"
+              style={{ color: "var(--text)" }}
+            >
+              20 Levels · 6 Chapters
+            </h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              {chapters.map((ch) => (
+                <div
+                  key={ch.index}
+                  className="rounded-2xl p-5"
+                  style={{
+                    background: "var(--card)",
+                    border: "1px solid var(--border)",
+                  }}
+                >
+                  <div className="text-xl mb-3">{ch.emoji}</div>
                   <div
                     className="text-xs font-semibold uppercase tracking-wider mb-1"
-                    style={{ color: "var(--purple)" }}
+                    style={{ color: "var(--accent)" }}
                   >
                     Chapter {ch.index}
                   </div>
-                  <div
-                    className="font-bold mb-1"
-                    style={{ color: "var(--text)" }}
-                  >
+                  <div className="font-bold text-sm mb-0.5" style={{ color: "var(--text)" }}>
                     {ch.name}
                   </div>
-                  <div className="text-sm" style={{ color: "var(--muted)" }}>
+                  <div className="text-xs" style={{ color: "var(--muted)" }}>
                     {ch.levels} levels
                   </div>
                 </div>
@@ -244,29 +244,32 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="px-6 py-32 text-center">
-          <h2
-            className="text-4xl font-black mb-6"
-            style={{ color: "var(--text)" }}
+        {/* ── CTA ── */}
+        <section
+          className="px-6 py-32 text-center"
+          style={{ background: "var(--surface)" }}
+        >
+          <p
+            className="text-xs font-semibold uppercase tracking-widest mb-4"
+            style={{ color: "var(--accent)" }}
           >
-            Ready to flex? 💪
+            Ready?
+          </p>
+          <h2 className="text-4xl font-black mb-8" style={{ color: "var(--text)" }}>
+            Start flexing today 💪
           </h2>
           <Link
             href="/play/1"
-            className="inline-block px-10 py-5 rounded-xl font-bold text-xl transition-all hover:scale-105 glow"
-            style={{ background: "var(--purple)", color: "#fff" }}
+            className="inline-block px-8 py-4 rounded-xl font-semibold text-lg transition-all hover:opacity-90 glow-accent"
+            style={{ background: "var(--accent)", color: "#fff" }}
           >
             Start Level 1 →
           </Link>
         </section>
 
         <footer
-          className="text-center py-8 text-sm"
-          style={{
-            color: "var(--muted)",
-            borderTop: "1px solid var(--border)",
-          }}
+          className="text-center py-6 text-sm"
+          style={{ color: "var(--muted)", borderTop: "1px solid var(--border)" }}
         >
           Built with ❤️ to make CSS learning actually fun.
         </footer>

@@ -66,7 +66,7 @@ function FlexContainer({
             <div
               style={{
                 flex: 1,
-                background: "rgba(124,106,247,0.5)",
+                background: "rgba(5,150,105,0.5)",
                 height: isColumn ? "100%" : 2,
                 width: isColumn ? 2 : "100%",
               }}
@@ -75,7 +75,7 @@ function FlexContainer({
           <span
             className="absolute text-xs font-mono font-bold px-1 rounded"
             style={{
-              color: "var(--purple)",
+              color: "var(--accent)",
               background: "rgba(10,10,22,0.8)",
               fontSize: 9,
               ...(isColumn ? { left: 12, top: 4 } : { left: 4, top: 12 }),
@@ -96,7 +96,7 @@ function FlexContainer({
             <div
               style={{
                 flex: 1,
-                background: "rgba(34,211,238,0.5)",
+                background: "rgba(56,189,248,0.5)",
                 height: isColumn ? 2 : "100%",
                 width: isColumn ? "100%" : 2,
               }}
@@ -105,7 +105,7 @@ function FlexContainer({
           <span
             className="absolute text-xs font-mono font-bold px-1 rounded"
             style={{
-              color: "var(--cyan)",
+              color: "var(--axis-cross)",
               background: "rgba(10,10,22,0.8)",
               fontSize: 9,
               ...(isColumn ? { right: 4, top: 12 } : { right: 12, bottom: 4 }),
@@ -299,15 +299,15 @@ export default function GameClient({ level, totalLevels }: Props) {
           />
           <span
             className="text-xs font-semibold uppercase tracking-wider"
-            style={{ color: "var(--purple)" }}
+            style={{ color: "var(--accent)" }}
           >
             {level.chapter}
           </span>
           <span
             className="text-xs px-2 py-0.5 rounded"
             style={{
-              background: "rgba(124,106,247,0.1)",
-              color: "var(--purple-light)",
+              background: "rgba(5,150,105,0.1)",
+              color: "var(--accent-light)",
             }}
           >
             {level.id} / {totalLevels}
@@ -320,9 +320,9 @@ export default function GameClient({ level, totalLevels }: Props) {
             className="text-xs px-3 py-1.5 rounded-lg transition-all"
             style={{
               background: showAxis
-                ? "rgba(124,106,247,0.2)"
+                ? "rgba(5,150,105,0.15)"
                 : "var(--card)",
-              color: showAxis ? "var(--purple-light)" : "var(--muted)",
+              color: showAxis ? "var(--accent-light)" : "var(--muted)",
               border: "1px solid var(--border)",
             }}
           >
@@ -369,7 +369,7 @@ export default function GameClient({ level, totalLevels }: Props) {
                   '<strong style="color:var(--text)">$1</strong>'
                 ).replace(
                   /`(.*?)`/g,
-                  '<code style="color:var(--cyan);font-family:var(--font-mono);font-size:12px;background:rgba(34,211,238,0.1);padding:1px 4px;border-radius:4px">$1</code>'
+                  '<code style="color:var(--axis-cross);font-family:var(--font-mono);font-size:12px;background:rgba(56,189,248,0.1);padding:1px 4px;border-radius:4px">$1</code>'
                 ),
               }}
             />
@@ -419,7 +419,7 @@ export default function GameClient({ level, totalLevels }: Props) {
                 style={{
                   background: "var(--card)",
                   border: `1px solid ${shakeEditor ? "var(--error)" : "var(--border)"}`,
-                  color: "var(--cyan)",
+                  color: "var(--axis-cross)",
                   fontFamily: "var(--font-mono)",
                   lineHeight: 1.8,
                 }}
@@ -430,7 +430,7 @@ export default function GameClient({ level, totalLevels }: Props) {
             <button
               onClick={handleCheck}
               className="w-full py-3 rounded-xl font-bold text-sm transition-all hover:opacity-90 active:scale-95"
-              style={{ background: "var(--purple)", color: "#fff" }}
+              style={{ background: "var(--accent)", color: "#fff" }}
             >
               Check (⌘↵)
             </button>
@@ -533,7 +533,7 @@ export default function GameClient({ level, totalLevels }: Props) {
                 dangerouslySetInnerHTML={{
                   __html: level.hint.replace(
                     /`(.*?)`/g,
-                    '<code style="color:var(--cyan);font-family:var(--font-mono);font-size:12px;background:rgba(34,211,238,0.1);padding:1px 4px;border-radius:4px">$1</code>'
+                    '<code style="color:var(--axis-cross);font-family:var(--font-mono);font-size:12px;background:rgba(56,189,248,0.1);padding:1px 4px;border-radius:4px">$1</code>'
                   ),
                 }}
               />
