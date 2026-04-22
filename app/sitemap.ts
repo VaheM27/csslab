@@ -30,12 +30,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   return [
-    { url: BASE_URL,                        lastModified: new Date(), changeFrequency: monthly, priority: 1.0 },
-    { url: `${BASE_URL}/play`,              lastModified: new Date(), changeFrequency: monthly, priority: 0.9 },
-    { url: `${BASE_URL}/play/flex`,         lastModified: new Date(), changeFrequency: monthly, priority: 0.9 },
-    { url: `${BASE_URL}/play/grid`,         lastModified: new Date(), changeFrequency: monthly, priority: 0.9 },
-    { url: `${BASE_URL}/play/media`,        lastModified: new Date(), changeFrequency: monthly, priority: 0.9 },
-    { url: `${BASE_URL}/sandbox`,           lastModified: new Date(), changeFrequency: monthly, priority: 0.7 },
+    { url: BASE_URL,                              lastModified: new Date(), changeFrequency: monthly, priority: 1.0 },
+    { url: `${BASE_URL}/play`,                    lastModified: new Date(), changeFrequency: monthly, priority: 0.9 },
+    { url: `${BASE_URL}/play/flex`,               lastModified: new Date(), changeFrequency: monthly, priority: 0.9 },
+    { url: `${BASE_URL}/play/grid`,               lastModified: new Date(), changeFrequency: monthly, priority: 0.9 },
+    { url: `${BASE_URL}/play/media`,              lastModified: new Date(), changeFrequency: monthly, priority: 0.9 },
+    { url: `${BASE_URL}/sandbox`,                 lastModified: new Date(), changeFrequency: monthly, priority: 0.7 },
+    { url: `${BASE_URL}/play/flex/complete`,      lastModified: new Date(), changeFrequency: monthly, priority: 0.5 },
+    { url: `${BASE_URL}/play/grid/complete`,      lastModified: new Date(), changeFrequency: monthly, priority: 0.5 },
+    { url: `${BASE_URL}/play/media/complete`,     lastModified: new Date(), changeFrequency: monthly, priority: 0.5 },
     ...flexRoutes,
     ...gridRoutes,
     ...mediaRoutes,

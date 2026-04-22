@@ -26,7 +26,7 @@ export interface GridLevel {
   solution: string;
 }
 
-export const GRID_TOTAL_LEVELS = 15;
+export const GRID_TOTAL_LEVELS = 20;
 
 const COLORS = [
   "#8b5cf6", "#0ea5e9", "#f43f5e", "#f97316",
@@ -464,5 +464,101 @@ export const gridLevels: GridLevel[] = [
       ],
     },
     solution: "grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));",
+  },
+
+  // ── Chapter 6: Advanced ─────────────────────────────────────────────────────
+  {
+    id: 16,
+    chapter: "Advanced",
+    chapterIndex: 6,
+    title: "Two Sidebars",
+    description:
+      "Create a classic **Holy Grail** column structure: a **160px left sidebar**, a fluid center, and a **160px right sidebar**.",
+    hint: "Try `grid-template-columns: 160px 1fr 160px;`",
+    explanation:
+      "Mixing fixed `px` and fluid `fr` units is a key Grid technique. The `1fr` column stretches to fill all remaining space after the fixed sidebars are placed. This pattern powers most app layouts.",
+    items: makeItems(3),
+    containerHeight: 110,
+    targetContainerCSS: { display: "grid", gridTemplateColumns: "160px 1fr 160px", gap: "10px" },
+    lockedCSS: { display: "grid", gap: "10px" },
+    editTarget: "container",
+    checkProps: { gridTemplateColumns: ["160px 1fr 160px"] },
+    solution: "grid-template-columns: 160px 1fr 160px;",
+  },
+  {
+    id: 17,
+    chapter: "Advanced",
+    chapterIndex: 6,
+    title: "Tall Item",
+    description:
+      "Make Item B span **2 rows** tall, stretching to fill the full height of the grid while other items fit beside it.",
+    hint: "Use `grid-row: span 2;` on Item B.",
+    explanation:
+      "`grid-row: span 2` tells an item to occupy **two consecutive row tracks**. This is the shorthand for `grid-row-start: auto; grid-row-end: span 2`. It's how you create magazine-style or dashboard card layouts.",
+    items: makeItems(5),
+    containerHeight: 180,
+    targetContainerCSS: { display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridAutoRows: "70px", gap: "8px" },
+    targetItemCSS: { 1: { gridRow: "span 2" } },
+    lockedCSS: { display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridAutoRows: "70px", gap: "8px" },
+    editTarget: 1,
+    editorLabel: "Item B",
+    checkProps: { gridRow: ["span 2", "1 / 3", "1 / span 2"] },
+    solution: "grid-row: span 2;",
+  },
+  {
+    id: 18,
+    chapter: "Advanced",
+    chapterIndex: 6,
+    title: "Wide Item",
+    description:
+      "Make Item A span **columns 1 through 2**, taking up twice the width of a normal cell.",
+    hint: "Use `grid-column: 1 / 3;` on Item A — or try `grid-column: span 2;`",
+    explanation:
+      "`grid-column: 1 / 3` means start at column line 1 and end at line 3 — spanning 2 columns. You can also use `span 2` which means 'span 2 tracks from wherever you start'. Both approaches work great for hero images, wide cards, or full-width banners.",
+    items: makeItems(5),
+    containerHeight: 180,
+    targetContainerCSS: { display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gridAutoRows: "70px", gap: "8px" },
+    targetItemCSS: { 0: { gridColumn: "1 / 3" } },
+    lockedCSS: { display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gridAutoRows: "70px", gap: "8px" },
+    editTarget: 0,
+    editorLabel: "Item A",
+    checkProps: { gridColumn: ["1 / 3", "1 / span 2", "span 2"] },
+    solution: "grid-column: 1 / 3;",
+  },
+  {
+    id: 19,
+    chapter: "Advanced",
+    chapterIndex: 6,
+    title: "Auto Row Height",
+    description:
+      "Implicitly-created rows collapse to the content size. Make every auto-generated row exactly **80px** tall.",
+    hint: "Use `grid-auto-rows: 80px;` on the container.",
+    explanation:
+      "`grid-auto-rows` sets the size of rows that are **automatically created** when content overflows the explicit grid. Without it, rows shrink to fit. Setting a fixed height ensures a consistent, uniform grid regardless of how many items are added.",
+    items: makeItems(6),
+    containerHeight: 200,
+    targetContainerCSS: { display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridAutoRows: "80px", gap: "8px" },
+    lockedCSS: { display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "8px" },
+    editTarget: "container",
+    checkProps: { gridAutoRows: ["80px"] },
+    solution: "grid-auto-rows: 80px;",
+  },
+  {
+    id: 20,
+    chapter: "Advanced",
+    chapterIndex: 6,
+    title: "Auto-Fit Grid",
+    description:
+      "Create a grid that **auto-fits** columns with a minimum width of **100px**. Like auto-fill but it collapses empty tracks.",
+    hint: "Try `grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));`",
+    explanation:
+      "`auto-fit` works like `auto-fill` but **collapses empty tracks** to zero width. This means if you have 3 items in a 6-column space, the items stretch to fill instead of leaving gaps. Use `auto-fit` when you want items to always fill the available width.",
+    items: makeItems(5),
+    containerHeight: 190,
+    targetContainerCSS: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(100px, 1fr))", gap: "10px" },
+    lockedCSS: { display: "grid", gap: "10px" },
+    editTarget: "container",
+    checkProps: { gridTemplateColumns: ["repeat(auto-fit, minmax(100px, 1fr))", "repeat(auto-fit,minmax(100px,1fr))", "repeat(auto-fit, minmax(100px,1fr))"] },
+    solution: "grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));",
   },
 ];

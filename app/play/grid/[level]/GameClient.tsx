@@ -70,7 +70,7 @@ function GridContainer({
 // ─── Chapter progress ────────────────────────────────────────────────────────
 function ChapterProgress({ level, progress }: { level: GridLevel; progress: Record<string, boolean> }) {
   const chapterRanges: Record<number, [number, number]> = {
-    1: [1, 3], 2: [4, 6], 3: [7, 10], 4: [11, 13], 5: [14, 15],
+    1: [1, 3], 2: [4, 6], 3: [7, 10], 4: [11, 13], 5: [14, 15], 6: [16, 20],
   };
   const [start, end] = chapterRanges[level.chapterIndex] ?? [level.id, level.id];
   const total = end - start + 1;
@@ -121,10 +121,10 @@ function SuccessOverlay({ onNext, isLast, explanation, streak }: {
           dangerouslySetInnerHTML={{ __html: rich }} />
         <div className="flex flex-col gap-2">
           {isLast ? (
-            <Link href="/play/grid"
+            <Link href="/play/grid/complete"
               className="w-full py-3.5 rounded-xl font-bold text-center block"
               style={{ background: "var(--success)", color: "#fff" }}>
-              🏆 All Grid Levels Done!
+              🏆 Claim Your Certificate!
             </Link>
           ) : (
             <button onClick={onNext}

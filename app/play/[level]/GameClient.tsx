@@ -124,7 +124,7 @@ function FlexContainer({
 function ChapterProgress({ level, progress }: { level: Level; progress: Record<string, boolean> }) {
   // Find all levels in same chapter (we don't have full list here, use id range knowledge)
   const chapterRanges: Record<number, [number, number]> = {
-    1: [1, 3], 2: [4, 8], 3: [9, 12], 4: [13, 14], 5: [15, 18], 6: [19, 20],
+    1: [1, 3], 2: [4, 8], 3: [9, 12], 4: [13, 14], 5: [15, 18], 6: [19, 20], 7: [21, 25],
   };
   const [start, end] = chapterRanges[level.chapterIndex] ?? [level.id, level.id];
   const total = end - start + 1;
@@ -203,10 +203,10 @@ function SuccessOverlay({ onNext, isLast, explanation, streak }: {
         <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25 }} className="flex flex-col gap-2">
           {isLast ? (
-            <Link href="/play"
+            <Link href="/play/flex/complete"
               className="w-full py-3.5 rounded-xl font-bold transition-all hover:opacity-90 active:scale-95 text-center block"
               style={{ background: "var(--success)", color: "#fff" }}>
-              🏆 All Done!
+              🏆 Claim Your Certificate!
             </Link>
           ) : (
             <button onClick={onNext}

@@ -21,7 +21,7 @@ export interface MediaLevel {
   solution: string;
 }
 
-export const MEDIA_TOTAL_LEVELS = 10;
+export const MEDIA_TOTAL_LEVELS = 15;
 
 const COLORS = [
   "#8b5cf6", "#0ea5e9", "#f43f5e", "#f97316",
@@ -257,5 +257,107 @@ export const mediaLevels: MediaLevel[] = [
     },
     solution:
       "@media (min-width: 900px) {\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr;\n}",
+  },
+
+  // ── Chapter 4: Real World ───────────────────────────────────────────────────
+  {
+    id: 11,
+    chapter: "Real World",
+    chapterIndex: 4,
+    title: "Reverse on Mobile",
+    description:
+      "On screens **480px or narrower**, flip the row so items appear in **reverse order** — right-to-left.",
+    hint: "Use `flex-direction: row-reverse;` inside a `max-width: 480px` query.",
+    explanation:
+      "`row-reverse` is useful when you want mobile users to see the most important item first without changing HTML order. Combined with media queries, you get full control over visual order at different breakpoints.",
+    items: makeItems(3),
+    containerHeight: 100,
+    baseCSS: { display: "flex", flexDirection: "row", gap: "12px", alignItems: "center" },
+    targetMobileCSS: { flexDirection: "row-reverse" },
+    breakpoint: 480,
+    breakpointType: "max-width",
+    checkProps: { flexDirection: ["row-reverse"] },
+    solution: "@media (max-width: 480px) {\n  flex-direction: row-reverse;\n}",
+  },
+  {
+    id: 12,
+    chapter: "Real World",
+    chapterIndex: 4,
+    title: "Wrap on Mobile",
+    description:
+      "Items are forced onto one line and overflow. On screens **600px or narrower**, let them **wrap** to the next line.",
+    hint: "Use `flex-wrap: wrap;` inside a `max-width: 600px` query.",
+    explanation:
+      "`flex-wrap: wrap` allows items to break onto new lines instead of shrinking or overflowing. This is one of the simplest and most effective responsive techniques — no grid needed for basic wrapping behavior.",
+    items: makeItems(5),
+    containerHeight: 140,
+    baseCSS: { display: "flex", flexWrap: "nowrap", gap: "8px" },
+    targetMobileCSS: { flexWrap: "wrap" },
+    breakpoint: 600,
+    breakpointType: "max-width",
+    checkProps: { flexWrap: ["wrap"] },
+    solution: "@media (max-width: 600px) {\n  flex-wrap: wrap;\n}",
+  },
+  {
+    id: 13,
+    chapter: "Real World",
+    chapterIndex: 4,
+    title: "Desktop Three-Pack",
+    description:
+      "Items stack vertically on mobile. On screens **768px and wider**, switch to a **3-column grid** layout.",
+    hint: "Use `min-width: 768px` and set `display: grid` with 3 equal columns.",
+    explanation:
+      "Switching between a flex column stack on mobile and a CSS Grid on desktop is a very common real-world pattern. The browser handles all transitions automatically — no JavaScript, no visibility toggling.",
+    items: makeItems(3),
+    containerHeight: 190,
+    baseCSS: { display: "flex", flexDirection: "column", gap: "10px" },
+    targetMobileCSS: { display: "grid", gridTemplateColumns: "repeat(3, 1fr)" },
+    breakpoint: 768,
+    breakpointType: "min-width",
+    checkProps: {
+      display: ["grid"],
+      gridTemplateColumns: ["repeat(3, 1fr)", "repeat(3,1fr)", "1fr 1fr 1fr"],
+    },
+    solution: "@media (min-width: 768px) {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n}",
+  },
+  {
+    id: 14,
+    chapter: "Real World",
+    chapterIndex: 4,
+    title: "Space Out on Mobile",
+    description:
+      "On screens **540px or narrower**, spread items to the **edges** of the container with maximum space between them.",
+    hint: "Use `justify-content: space-between;` inside a `max-width: 540px` query.",
+    explanation:
+      "`justify-content: space-between` pushes items to the edges of the container with equal space between them. On mobile it creates a clean, spread-out look perfect for toolbars, navigation bars, and icon rows.",
+    items: makeItems(3),
+    containerHeight: 100,
+    baseCSS: { display: "flex", gap: "12px", alignItems: "center" },
+    targetMobileCSS: { justifyContent: "space-between" },
+    breakpoint: 540,
+    breakpointType: "max-width",
+    checkProps: { justifyContent: ["space-between"] },
+    solution: "@media (max-width: 540px) {\n  justify-content: space-between;\n}",
+  },
+  {
+    id: 15,
+    chapter: "Real World",
+    chapterIndex: 4,
+    title: "Four on Desktop",
+    description:
+      "The grid shows **2 columns** on small screens. On **1024px and wider**, expand to **4 columns**.",
+    hint: "Use `min-width: 1024px` and change `grid-template-columns` to 4 equal columns.",
+    explanation:
+      "Progressive enhancement with `min-width` breakpoints is mobile-first CSS. Start with a simple 2-column layout and enhance it for larger screens. Switching from `repeat(2, 1fr)` to `repeat(4, 1fr)` doubles the visual density on wide screens — common for product grids and dashboards.",
+    items: makeItems(4),
+    containerHeight: 170,
+    baseCSS: { display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "10px" },
+    targetMobileCSS: { gridTemplateColumns: "repeat(4, 1fr)" },
+    breakpoint: 1024,
+    breakpointType: "min-width",
+    checkProps: {
+      gridTemplateColumns: ["repeat(4, 1fr)", "repeat(4,1fr)", "1fr 1fr 1fr 1fr"],
+    },
+    solution: "@media (min-width: 1024px) {\n  grid-template-columns: repeat(4, 1fr);\n}",
   },
 ];

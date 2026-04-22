@@ -73,7 +73,7 @@ function PreviewBox({
 
 // ─── Chapter progress ────────────────────────────────────────────────────────
 function ChapterProgress({ level, progress }: { level: MediaLevel; progress: Record<string, boolean> }) {
-  const ranges: Record<number, [number, number]> = { 1: [1, 3], 2: [4, 7], 3: [8, 10] };
+  const ranges: Record<number, [number, number]> = { 1: [1, 3], 2: [4, 7], 3: [8, 10], 4: [11, 15] };
   const [start, end] = ranges[level.chapterIndex] ?? [level.id, level.id];
   const total = end - start + 1;
   const posInChapter = level.id - start + 1;
@@ -123,10 +123,10 @@ function SuccessOverlay({ onNext, isLast, explanation, streak }: {
           dangerouslySetInnerHTML={{ __html: rich }} />
         <div className="flex flex-col gap-2">
           {isLast ? (
-            <Link href="/play/media"
+            <Link href="/play/media/complete"
               className="w-full py-3.5 rounded-xl font-bold text-center block"
               style={{ background: "#f43f5e", color: "#fff" }}>
-              🏆 All @media Levels Done!
+              🏆 Claim Your Certificate!
             </Link>
           ) : (
             <button onClick={onNext}

@@ -45,7 +45,7 @@ function makeItems(count: number, options?: { heights?: number[] }): FlexItem[] 
   }));
 }
 
-export const TOTAL_LEVELS = 20;
+export const TOTAL_LEVELS = 25;
 
 export const levels: Level[] = [
   // ─────────────────────────────────────────────
@@ -474,6 +474,108 @@ export const levels: Level[] = [
       justifyContent: ["space-between"],
     },
     solution: 'justify-content: space-between;',
+  },
+
+  // ─────────────────────────────────────────────
+  // CHAPTER 7: ITEM CONTROL
+  // ─────────────────────────────────────────────
+  {
+    id: 21,
+    chapter: "Item Control",
+    chapterIndex: 7,
+    title: "Grow to Fill",
+    description:
+      "Item B should stretch to **fill all remaining horizontal space** in the row. A and C stay their natural size.",
+    hint: "Use `flex-grow: 1;` on Item B.",
+    explanation:
+      "`flex-grow: 1` tells a flex item to absorb **all available free space** left in the container. When only one item grows, it takes everything that's left. This is the classic pattern for a main content area that expands alongside a fixed sidebar.",
+    items: makeItems(3, { heights: [60, 60, 60] }),
+    containerHeight: 100,
+    targetContainerCSS: { display: "flex", gap: "10px", alignItems: "center" },
+    targetItemCSS: { 1: { flexGrow: "1" } },
+    lockedCSS: { display: "flex", gap: "10px", alignItems: "center" },
+    editTarget: 1,
+    editorLabel: "Item B",
+    checkProps: { flexGrow: ["1"] },
+    solution: "flex-grow: 1;",
+  },
+  {
+    id: 22,
+    chapter: "Item Control",
+    chapterIndex: 7,
+    title: "Set a Base Size",
+    description:
+      "Give Item B a **starting width of 150px** using the flex-basis property, before any growing or shrinking.",
+    hint: "Use `flex-basis: 150px;` on Item B.",
+    explanation:
+      "`flex-basis` sets the **initial main-axis size** of an item before `flex-grow` and `flex-shrink` are applied. Unlike `width`, it's direction-aware — it always works along the main axis regardless of `flex-direction`.",
+    items: makeItems(3),
+    containerHeight: 100,
+    targetContainerCSS: { display: "flex", gap: "10px", alignItems: "center" },
+    targetItemCSS: { 1: { flexBasis: "150px" } },
+    lockedCSS: { display: "flex", gap: "10px", alignItems: "center" },
+    editTarget: 1,
+    editorLabel: "Item B",
+    checkProps: { flexBasis: ["150px"] },
+    solution: "flex-basis: 150px;",
+  },
+  {
+    id: 23,
+    chapter: "Item Control",
+    chapterIndex: 7,
+    title: "Cut the Line",
+    description:
+      "Item C is last in the HTML. Use the **order** property to make it appear **first**, before A and B.",
+    hint: "The default order is `0`. Use `order: -1;` on Item C to push it before everyone else.",
+    explanation:
+      "`order` controls **visual placement** without touching the HTML. Default is `0` — lower values appear earlier. This is powerful for accessibility (meaningful source order) and responsive layouts (sidebar last in HTML but first on desktop).",
+    items: makeItems(3),
+    containerHeight: 100,
+    targetContainerCSS: { display: "flex", gap: "10px", alignItems: "center" },
+    targetItemCSS: { 2: { order: "-1" } },
+    lockedCSS: { display: "flex", gap: "10px", alignItems: "center" },
+    editTarget: 2,
+    editorLabel: "Item C",
+    checkProps: { order: ["-1"] },
+    solution: "order: -1;",
+  },
+  {
+    id: 24,
+    chapter: "Item Control",
+    chapterIndex: 7,
+    title: "The flex Shorthand",
+    description:
+      "Use the `flex` shorthand on Item B to make it: **grow** (flex-grow: 1), **not shrink** (flex-shrink: 0), with a **100px base** (flex-basis: 100px).",
+    hint: "The shorthand is `flex: grow shrink basis;` — so `flex: 1 0 100px;`",
+    explanation:
+      "`flex: 1 0 100px` is shorthand for `flex-grow: 1; flex-shrink: 0; flex-basis: 100px`. The three values control growth, shrinkage, and starting size — all in one declaration. This shorthand is widely used in production code.",
+    items: makeItems(3),
+    containerHeight: 100,
+    targetContainerCSS: { display: "flex", gap: "10px" },
+    targetItemCSS: { 1: { flex: "1 0 100px" } },
+    lockedCSS: { display: "flex", gap: "10px" },
+    editTarget: 1,
+    editorLabel: "Item B",
+    checkProps: { flex: ["1 0 100px"] },
+    solution: "flex: 1 0 100px;",
+  },
+  {
+    id: 25,
+    chapter: "Item Control",
+    chapterIndex: 7,
+    title: "Wrap Alignment",
+    description:
+      "Items wrap onto multiple lines but float in the middle. Use **align-content** to pack all lines to the **top** of the container.",
+    hint: "Use `align-content: flex-start;` on the container.",
+    explanation:
+      "`align-content` controls how **multiple lines** are distributed along the cross axis — but only when `flex-wrap` is enabled. `flex-start` packs all rows to the top. It's like `align-items` but for the entire group of rows.",
+    items: makeItems(7),
+    containerHeight: 200,
+    targetContainerCSS: { display: "flex", flexWrap: "wrap", gap: "8px", alignContent: "flex-start" },
+    lockedCSS: { display: "flex", flexWrap: "wrap", gap: "8px" },
+    editTarget: "container",
+    checkProps: { alignContent: ["flex-start", "start"] },
+    solution: "align-content: flex-start;",
   },
 ];
 
