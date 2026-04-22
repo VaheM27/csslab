@@ -2,45 +2,50 @@
 @import "tailwindcss";
 
 :root {
-  /* Backgrounds */
-  --bg:        #0c111d;
-  --surface:   #111827;
-  --card:      #1a2236;
-  --card-hover:#1e2844;
+  /* Backgrounds — mint light like portfolio */
+  --bg:        #f0fdf9;
+  --surface:   #ffffff;
+  --card:      #ffffff;
+  --card-hover:#f8fffe;
 
-  /* Emerald accent (from portfolio) */
+  /* Emerald accent */
   --accent:        #059669;
   --accent-rgb:    5, 150, 105;
   --accent-alt:    #0d9488;
   --accent-light:  #34d399;
-  --accent-dim:    rgba(5, 150, 105, 0.15);
+  --accent-dark:   #047857;
+  --accent-dim:    rgba(5, 150, 105, 0.08);
 
-  /* Cross-axis indicator — calm teal/blue */
-  --axis-cross: #38bdf8;
+  /* Axis indicators */
+  --axis-main:  #059669;
+  --axis-cross: #0891b2;
 
   /* Text */
-  --text:      #f1f5f9;
-  --text-sec:  #cbd5e1;
+  --text:      #0f172a;
+  --text-sec:  #334155;
   --muted:     #64748b;
   --muted-lt:  #94a3b8;
 
   /* Borders */
-  --border:        rgba(255, 255, 255, 0.07);
-  --border-accent: rgba(5, 150, 105, 0.22);
+  --border:        rgba(0, 0, 0, 0.07);
+  --border-accent: rgba(5, 150, 105, 0.2);
   --border-strong: rgba(5, 150, 105, 0.4);
 
   /* Shadows */
-  --shadow-sm: 0 2px 8px  rgba(5, 150, 105, 0.06);
-  --shadow-md: 0 8px 30px rgba(5, 150, 105, 0.10);
-  --shadow-lg: 0 20px 60px rgba(5, 150, 105, 0.14);
+  --shadow-sm: 0 1px 4px  rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 20px rgba(5, 150, 105, 0.08);
+  --shadow-lg: 0 12px 40px rgba(5, 150, 105, 0.12);
 
-  /* Success / error */
-  --success: #4ade80;
-  --error:   #f87171;
+  /* Semantic */
+  --success: #059669;
+  --error:   #dc2626;
 
   /* Fonts */
   --font-sans: "Inter", system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
+
+  /* Glass nav */
+  --glass-nav: rgba(255, 255, 255, 0.75);
 }
 
 @theme inline {
@@ -58,24 +63,23 @@ html, body {
 }
 
 ::selection {
-  background: rgba(5, 150, 105, 0.35);
+  background: rgba(5, 150, 105, 0.2);
 }
 
 ::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-track { background: #f0fdf9; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(5, 150, 105, 0.4);
+  background: rgba(5, 150, 105, 0.3);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-/* Utilities */
 .glow-accent {
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 20px rgba(5, 150, 105, 0.25);
 }
 
 .glass {
-  background: rgba(17, 24, 39, 0.8);
+  background: var(--glass-nav);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
@@ -88,11 +92,6 @@ html, body {
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(-6px); }
-}
-
-@keyframes pulse-border {
-  0%, 100% { border-color: var(--border-accent); }
-  50%       { border-color: var(--border-strong); }
 }
 
 .animate-slide-up { animation: slide-up 0.4s ease both; }

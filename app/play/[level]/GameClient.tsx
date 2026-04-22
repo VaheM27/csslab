@@ -76,7 +76,7 @@ function FlexContainer({
             className="absolute text-xs font-mono font-bold px-1 rounded"
             style={{
               color: "var(--accent)",
-              background: "rgba(10,10,22,0.8)",
+              background: "rgba(255,255,255,0.9)",
               fontSize: 9,
               ...(isColumn ? { left: 12, top: 4 } : { left: 4, top: 12 }),
             }}
@@ -106,7 +106,7 @@ function FlexContainer({
             className="absolute text-xs font-mono font-bold px-1 rounded"
             style={{
               color: "var(--axis-cross)",
-              background: "rgba(10,10,22,0.8)",
+              background: "rgba(255,255,255,0.9)",
               fontSize: 9,
               ...(isColumn ? { right: 4, top: 12 } : { right: 12, bottom: 4 }),
             }}
@@ -164,7 +164,7 @@ function SuccessOverlay({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className="absolute inset-0 z-30 flex flex-col items-center justify-center rounded-xl p-6 text-center"
-      style={{ background: "rgba(10,10,22,0.92)", backdropFilter: "blur(4px)" }}
+      style={{ background: "rgba(255,255,255,0.95)", backdropFilter: "blur(4px)" }}
     >
       <motion.div
         initial={{ scale: 0 }}
@@ -179,7 +179,7 @@ function SuccessOverlay({
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
         className="font-black text-xl mb-2"
-        style={{ color: "var(--green)" }}
+        style={{ color: "var(--success)" }}
       >
         Level Cleared!
       </motion.h3>
@@ -201,7 +201,7 @@ function SuccessOverlay({
           <Link
             href="/play"
             className="px-6 py-3 rounded-xl font-bold transition-all hover:scale-105"
-            style={{ background: "var(--green)", color: "#000" }}
+            style={{ background: "var(--success)", color: "#fff" }}
           >
             🏆 All Done!
           </Link>
@@ -209,7 +209,7 @@ function SuccessOverlay({
           <button
             onClick={onNext}
             className="px-6 py-3 rounded-xl font-bold transition-all hover:scale-105"
-            style={{ background: "var(--green)", color: "#000" }}
+            style={{ background: "var(--success)", color: "#fff" }}
           >
             Next Level →
           </button>
