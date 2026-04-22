@@ -3,7 +3,20 @@ import Navbar from "@/app/components/Navbar";
 
 export const metadata = {
   title: "Play — CSSLab",
-  description: "Choose a CSS topic and start learning through interactive challenges.",
+  description: "Choose a CSS topic: Flexbox, Grid, or @media queries. 45 interactive challenges with live previews.",
+  alternates: { canonical: "https://flexlab-jade.vercel.app/play" },
+  openGraph: {
+    title: "Play — CSSLab",
+    description: "45 interactive CSS challenges — Flexbox, Grid, and @media queries. Live previews, instant feedback.",
+    url: "https://flexlab-jade.vercel.app/play",
+    siteName: "CSSLab",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Play — CSSLab",
+    description: "45 interactive CSS challenges — Flexbox, Grid, and @media queries.",
+  },
 };
 
 const modules = [

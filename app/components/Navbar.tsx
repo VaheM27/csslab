@@ -26,18 +26,18 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <div className="w-px h-4 mx-1" style={{ background: "var(--border)" }} />
+        <div className="w-px h-4 mx-1 hidden sm:block" style={{ background: "var(--border)" }} />
 
-        <Link href="/play/flex" className="px-3 py-1.5 rounded-full text-sm font-medium transition-all hover:opacity-70" style={{ color: "var(--muted)" }}>
+        <Link href="/play/flex" className="px-2.5 sm:px-3 py-1.5 rounded-full text-sm font-medium transition-all hover:opacity-70 hidden sm:block" style={{ color: "var(--muted)" }}>
           Flex
         </Link>
-        <Link href="/play/grid" className="px-3 py-1.5 rounded-full text-sm font-medium transition-all hover:opacity-70" style={{ color: "var(--muted)" }}>
+        <Link href="/play/grid" className="px-2.5 sm:px-3 py-1.5 rounded-full text-sm font-medium transition-all hover:opacity-70 hidden sm:block" style={{ color: "var(--muted)" }}>
           Grid
         </Link>
-        <Link href="/play/media" className="px-3 py-1.5 rounded-full text-sm font-medium transition-all hover:opacity-70" style={{ color: "var(--muted)" }}>
+        <Link href="/play/media" className="px-2.5 sm:px-3 py-1.5 rounded-full text-sm font-medium transition-all hover:opacity-70 hidden sm:block" style={{ color: "var(--muted)" }}>
           @media
         </Link>
-        <Link href="/sandbox" className="px-3 py-1.5 rounded-full text-sm font-medium transition-all hover:opacity-70 hidden sm:block" style={{ color: "var(--muted)" }}>
+        <Link href="/sandbox" className="px-2.5 sm:px-3 py-1.5 rounded-full text-sm font-medium transition-all hover:opacity-70 hidden lg:block" style={{ color: "var(--muted)" }}>
           Sandbox
         </Link>
 

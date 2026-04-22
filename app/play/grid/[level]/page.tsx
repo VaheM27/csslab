@@ -10,9 +10,24 @@ export async function generateMetadata({ params }: { params: Promise<{ level: st
   const { level } = await params;
   const l = gridLevels.find((x) => x.id === Number(level));
   if (!l) return {};
+  const desc = l.description.replace(/\*\*/g, "").replace(/`/g, "");
+  const url = `https://flexlab-jade.vercel.app/play/grid/${l.id}`;
   return {
     title: `Level ${l.id}: ${l.title} — CSS Grid · CSSLab`,
-    description: l.description.replace(/\*\*/g, ""),
+    description: desc,
+    alternates: { canonical: url },
+    openGraph: {
+      title: `Level ${l.id}: ${l.title} — CSS Grid`,
+      description: desc,
+      url,
+      siteName: "CSSLab",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Level ${l.id}: ${l.title} — CSS Grid · CSSLab`,
+      description: desc,
+    },
   };
 }
 

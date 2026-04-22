@@ -358,58 +358,58 @@ export default function GameClient({ level, totalLevels }: Props) {
     <div className="flex flex-col" style={{ minHeight: "100dvh", paddingTop: 72 }}>
 
       {/* ── Top bar ── */}
-      <div className="flex items-center justify-between px-4 py-2.5 shrink-0"
+      <div className="flex items-center justify-between px-3 py-2 shrink-0"
         style={{ background: "var(--surface)", borderBottom: "1px solid var(--border)", boxShadow: "var(--shadow-sm)" }}>
-        <div className="flex items-center gap-3 min-w-0">
-          <Link href="/play" className="text-sm transition-opacity opacity-50 hover:opacity-100 shrink-0"
-            style={{ color: "var(--text)" }}>← Levels</Link>
+        <div className="flex items-center gap-2 min-w-0">
+          <Link href="/play" className="text-sm opacity-50 hover:opacity-100 shrink-0 px-1"
+            style={{ color: "var(--text)" }}>←</Link>
           <div className="w-px h-4 shrink-0" style={{ background: "var(--border)" }} />
           <ChapterProgress level={level} progress={progress} />
-          <span className="text-xs px-2 py-0.5 rounded-full shrink-0"
-            style={{ background: "var(--accent-dim)", color: "var(--accent)", border: "1px solid var(--border-accent)" }}>
-            {level.id}/{totalLevels}
-          </span>
         </div>
 
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-1.5 shrink-0">
+          {/* Share — icon on mobile, text on sm+ */}
           <button onClick={handleShare}
-            className="text-xs px-3 py-1.5 rounded-lg transition-all hover:opacity-80"
+            className="text-xs px-2 sm:px-3 py-1.5 rounded-lg transition-all hover:opacity-80"
             style={{ background: "var(--card)", color: "var(--muted)", border: "1px solid var(--border)" }}>
-            📤 Share
+            <span>📤</span><span className="hidden sm:inline"> Share</span>
           </button>
+          {/* Axes toggle — icon on mobile */}
           <button onClick={() => setShowAxis(!showAxis)}
-            className="text-xs px-3 py-1.5 rounded-lg transition-all"
+            className="text-xs px-2 sm:px-3 py-1.5 rounded-lg transition-all"
             style={{
               background: showAxis ? "var(--accent-dim)" : "var(--card)",
               color: showAxis ? "var(--accent)" : "var(--muted)",
               border: `1px solid ${showAxis ? "var(--border-accent)" : "var(--border)"}`,
             }}>
-            {showAxis ? "Hide" : "Show"} Axes
+            <span>📐</span><span className="hidden sm:inline"> {showAxis ? "Hide" : "Show"} Axes</span>
           </button>
+          {/* Hint */}
           <button onClick={() => setShowHint(true)}
-            className="text-xs px-3 py-1.5 rounded-lg transition-all hover:opacity-80"
+            className="text-xs px-2 sm:px-3 py-1.5 rounded-lg transition-all hover:opacity-80"
             style={{ background: "var(--card)", color: "var(--muted)", border: "1px solid var(--border)" }}>
-            💡 Hint
+            <span>💡</span><span className="hidden sm:inline"> Hint</span>
           </button>
         </div>
       </div>
 
       {/* ── Main layout ── */}
-      <div className="flex flex-col lg:flex-row flex-1 overflow-hidden">
+      {/* On mobile: previews first (order-1), editor second (order-2) */}
+      <div className="flex flex-col lg:flex-row flex-1 lg:overflow-hidden">
 
-        {/* Left: info + editor */}
-        <div className="lg:w-72 xl:w-80 shrink-0 flex flex-col"
+        {/* Left: info + editor — goes BELOW previews on mobile */}
+        <div className="lg:w-72 xl:w-80 shrink-0 flex flex-col order-2 lg:order-1"
           style={{ background: "var(--surface)", borderRight: "1px solid var(--border)" }}>
 
           {/* Level info */}
-          <div className="p-5 border-b" style={{ borderColor: "var(--border)" }}>
-            <h1 className="font-black text-xl mb-2" style={{ color: "var(--text)" }}>{level.title}</h1>
+          <div className="p-4 border-b" style={{ borderColor: "var(--border)" }}>
+            <h1 className="font-black text-lg mb-1.5" style={{ color: "var(--text)" }}>{level.title}</h1>
             <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}
               dangerouslySetInnerHTML={{ __html: richDesc }} />
           </div>
 
           {/* Editor */}
-          <div className="p-4 flex flex-col gap-3 flex-1">
+          <div className="p-4 flex flex-col gap-3">
             <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--muted)" }}>
               {level.editTarget === "container" ? "Container CSS" : `Item ${level.editorLabel ?? `#${(level.editTarget as number) + 1}`} CSS`}
             </div>
@@ -427,7 +427,7 @@ export default function GameClient({ level, totalLevels }: Props) {
 
             {/* Textarea */}
             <motion.div animate={shake ? { x: [0, -7, 7, -7, 7, 0] } : { x: 0 }}
-              transition={{ duration: 0.4 }} className="relative flex-1">
+              transition={{ duration: 0.4 }}>
               <textarea
                 ref={textareaRef}
                 value={userInput}
@@ -435,8 +435,7 @@ export default function GameClient({ level, totalLevels }: Props) {
                 placeholder={"/* type your CSS here */\njustify-content: center;"}
                 className="w-full p-4 rounded-xl text-sm resize-none outline-none transition-all"
                 style={{
-                  minHeight: 160,
-                  height: "100%",
+                  minHeight: 120,
                   background: "var(--code-bg)",
                   border: `1.5px solid ${shake ? "var(--error)" : "var(--border-accent)"}`,
                   color: "var(--accent)",
@@ -450,7 +449,7 @@ export default function GameClient({ level, totalLevels }: Props) {
             <button onClick={handleCheck}
               className="w-full py-3 rounded-xl font-bold text-sm transition-all hover:opacity-90 active:scale-95"
               style={{ background: "var(--accent)", color: "#fff", boxShadow: "var(--shadow-md)" }}>
-              Check ⌘↵
+              Check ✓
             </button>
 
             {shake && (
@@ -469,12 +468,12 @@ export default function GameClient({ level, totalLevels }: Props) {
           </div>
         </div>
 
-        {/* Right: Target + Preview */}
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-5 p-5 overflow-auto"
+        {/* Right: Target + Preview — goes FIRST on mobile */}
+        <div className="flex-1 grid grid-cols-2 gap-3 p-3 sm:gap-5 sm:p-5 overflow-auto order-1 lg:order-2"
           style={{ background: "var(--bg)" }}>
 
           {/* Target */}
-          <div className="flex flex-col gap-2.5">
+          <div className="flex flex-col gap-2">
             <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--muted)" }}>
               🎯 Target
             </div>
@@ -488,7 +487,7 @@ export default function GameClient({ level, totalLevels }: Props) {
           </div>
 
           {/* Yours */}
-          <div className="flex flex-col gap-2.5">
+          <div className="flex flex-col gap-2">
             <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--muted)" }}>
               ✏️ Yours
             </div>

@@ -19,14 +19,7 @@ export default function Image() {
         }}
       >
         {/* Logo */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 14,
-            marginBottom: 32,
-          }}
-        >
+        <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 28 }}>
           <div
             style={{
               width: 56,
@@ -41,84 +34,62 @@ export default function Image() {
               fontSize: 28,
             }}
           >
-            F
+            C
           </div>
           <div style={{ display: "flex", alignItems: "baseline" }}>
-            <span style={{ color: "#e2e8f0", fontWeight: 900, fontSize: 40 }}>Flex</span>
-            <span style={{ color: "#7c6af7", fontWeight: 900, fontSize: 40 }}>Lab</span>
+            <span style={{ color: "#e2e8f0", fontWeight: 900, fontSize: 44 }}>CSS</span>
+            <span style={{ color: "#7c6af7", fontWeight: 900, fontSize: 44 }}>Lab</span>
           </div>
         </div>
 
         {/* Headline */}
         <div
           style={{
-            fontSize: 72,
+            fontSize: 68,
             fontWeight: 900,
             color: "#e2e8f0",
             textAlign: "center",
             lineHeight: 1.1,
-            marginBottom: 12,
+            marginBottom: 10,
           }}
         >
-          Learn Flexbox
+          Learn CSS by Playing
         </div>
         <div
           style={{
-            fontSize: 72,
-            fontWeight: 900,
+            fontSize: 24,
+            color: "#64748b",
             textAlign: "center",
-            lineHeight: 1.1,
             marginBottom: 44,
-            color: "#7c6af7",
           }}
         >
-          by Playing
+          45 interactive challenges · Flexbox · Grid · @media queries
         </div>
 
-        {/* Flex demo */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: 12,
-            background: "#13132e",
-            borderRadius: 16,
-            padding: "20px 36px",
-            border: "1px solid rgba(255,255,255,0.1)",
-            width: 580,
-            marginBottom: 36,
-          }}
-        >
+        {/* 3 module pills */}
+        <div style={{ display: "flex", gap: 16, marginBottom: 0 }}>
           {[
-            { label: "A", bg: "#7c3aed" },
-            { label: "B", bg: "#0891b2" },
-            { label: "C", bg: "#be185d" },
-            { label: "D", bg: "#c2410c" },
-          ].map((item) => (
+            { label: "↔ Flexbox", color: "#0ea5e9", bg: "rgba(14,165,233,0.12)", border: "rgba(14,165,233,0.3)" },
+            { label: "⬛ CSS Grid", color: "#8b5cf6", bg: "rgba(139,92,246,0.12)", border: "rgba(139,92,246,0.3)" },
+            { label: "📱 @media", color: "#f43f5e", bg: "rgba(244,63,94,0.12)", border: "rgba(244,63,94,0.3)" },
+          ].map((m) => (
             <div
-              key={item.label}
+              key={m.label}
               style={{
-                width: 72,
-                height: 72,
-                borderRadius: 12,
-                background: item.bg,
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center",
-                color: "#fff",
-                fontWeight: 900,
-                fontSize: 24,
+                padding: "12px 28px",
+                borderRadius: 100,
+                background: m.bg,
+                border: `1.5px solid ${m.border}`,
+                color: m.color,
+                fontWeight: 700,
+                fontSize: 22,
               }}
             >
-              {item.label}
+              {m.label}
             </div>
           ))}
-        </div>
-
-        {/* Tagline */}
-        <div style={{ color: "#64748b", fontSize: 22, textAlign: "center" }}>
-          20 interactive challenges · axis visualization · live preview
         </div>
       </div>
     ),

@@ -4,7 +4,20 @@ import GridLevelSelectClient from "./LevelSelectClient";
 
 export const metadata = {
   title: "CSS Grid Challenges — CSSLab",
-  description: "Master CSS Grid through 15 interactive challenges.",
+  description: "Master CSS Grid through 15 interactive challenges. Learn grid-template-columns, span, place-items, minmax() and more with live previews.",
+  alternates: { canonical: "https://flexlab-jade.vercel.app/play/grid" },
+  openGraph: {
+    title: "CSS Grid Challenges — CSSLab",
+    description: "15 interactive CSS Grid challenges with live previews. From display:grid to responsive auto-fill layouts.",
+    url: "https://flexlab-jade.vercel.app/play/grid",
+    siteName: "CSSLab",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CSS Grid Challenges — CSSLab",
+    description: "15 interactive CSS Grid challenges with live previews.",
+  },
 };
 
 export default function GridPlayPage() {

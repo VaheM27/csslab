@@ -72,10 +72,10 @@ export default async function Image({
                 fontSize: 22,
               }}
             >
-              F
+              C
             </div>
             <div style={{ display: "flex", alignItems: "baseline", gap: 0 }}>
-              <span style={{ color: "#e2e8f0", fontWeight: 900, fontSize: 28 }}>Flex</span>
+              <span style={{ color: "#e2e8f0", fontWeight: 900, fontSize: 28 }}>CSS</span>
               <span style={{ color: "#7c6af7", fontWeight: 900, fontSize: 28 }}>Lab</span>
             </div>
           </div>
@@ -94,7 +94,7 @@ export default async function Image({
           >
             <span style={{ color: color, fontWeight: 700, fontSize: 18 }}>{lvl.chapter}</span>
             <span style={{ color: "#64748b", fontSize: 18 }}>·</span>
-            <span style={{ color: "#64748b", fontSize: 18 }}>Level {lvl.id} of {TOTAL_LEVELS}</span>
+            <span style={{ color: "#64748b", fontSize: 18 }}>{`Level ${lvl.id} of ${TOTAL_LEVELS}`}</span>
           </div>
         </div>
 
@@ -166,7 +166,7 @@ export default async function Image({
             gap: 12,
           }}
         >
-          <span style={{ color: "#7c6af7", fontSize: 18, fontWeight: 600 }}>flexlab-jade.vercel.app</span>
+          <span style={{ color: "#7c6af7", fontSize: 18, fontWeight: 600 }}>csslab.dev</span>
           <span style={{ color: "#64748b", fontSize: 18 }}>·</span>
           <span style={{ color: "#64748b", fontSize: 18 }}>Interactive CSS Flexbox Challenges</span>
         </div>

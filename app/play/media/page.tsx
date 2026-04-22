@@ -3,8 +3,21 @@ import { mediaLevels } from "@/app/data/mediaLevels";
 import MediaLevelSelectClient from "./LevelSelectClient";
 
 export const metadata = {
-  title: "@media Challenges — CSSLab",
-  description: "Master CSS media queries through 10 interactive challenges.",
+  title: "@media Query Challenges — CSSLab",
+  description: "Master CSS media queries through 10 interactive challenges. Learn max-width, min-width breakpoints, and responsive design with live mobile/desktop previews.",
+  alternates: { canonical: "https://flexlab-jade.vercel.app/play/media" },
+  openGraph: {
+    title: "@media Query Challenges — CSSLab",
+    description: "10 interactive @media query challenges with live mobile & desktop previews. Learn responsive CSS the right way.",
+    url: "https://flexlab-jade.vercel.app/play/media",
+    siteName: "CSSLab",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "@media Query Challenges — CSSLab",
+    description: "10 interactive @media query challenges with live mobile & desktop previews.",
+  },
 };
 
 export default function MediaPlayPage() {

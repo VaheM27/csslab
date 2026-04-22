@@ -238,44 +238,40 @@ export default function GridGameClient({ level, totalLevels }: Props) {
     <div className="flex flex-col" style={{ minHeight: "100dvh", paddingTop: 72 }}>
 
       {/* Top bar */}
-      <div className="flex items-center justify-between px-4 py-2.5 shrink-0"
+      <div className="flex items-center justify-between px-3 py-2 shrink-0"
         style={{ background: "var(--surface)", borderBottom: "1px solid var(--border)", boxShadow: "var(--shadow-sm)" }}>
-        <div className="flex items-center gap-3 min-w-0">
-          <Link href="/play/grid" className="text-sm opacity-50 hover:opacity-100 shrink-0" style={{ color: "var(--text)" }}>← Grid</Link>
+        <div className="flex items-center gap-2 min-w-0">
+          <Link href="/play/grid" className="text-sm opacity-50 hover:opacity-100 shrink-0 px-1" style={{ color: "var(--text)" }}>←</Link>
           <div className="w-px h-4 shrink-0" style={{ background: "var(--border)" }} />
           <ChapterProgress level={level} progress={progress} />
-          <span className="text-xs px-2 py-0.5 rounded-full shrink-0"
-            style={{ background: "var(--accent-dim)", color: "var(--accent)", border: "1px solid var(--border-accent)" }}>
-            {level.id}/{totalLevels}
-          </span>
         </div>
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-1.5 shrink-0">
           <button onClick={handleShare}
-            className="text-xs px-3 py-1.5 rounded-lg transition-all hover:opacity-80"
+            className="text-xs px-2 sm:px-3 py-1.5 rounded-lg transition-all hover:opacity-80"
             style={{ background: "var(--card)", color: "var(--muted)", border: "1px solid var(--border)" }}>
-            📤 Share
+            <span>📤</span><span className="hidden sm:inline"> Share</span>
           </button>
           <button onClick={() => setShowHint(true)}
-            className="text-xs px-3 py-1.5 rounded-lg transition-all hover:opacity-80"
+            className="text-xs px-2 sm:px-3 py-1.5 rounded-lg transition-all hover:opacity-80"
             style={{ background: "var(--card)", color: "var(--muted)", border: "1px solid var(--border)" }}>
-            💡 Hint
+            <span>💡</span><span className="hidden sm:inline"> Hint</span>
           </button>
         </div>
       </div>
 
       {/* Main layout */}
-      <div className="flex flex-col lg:flex-row flex-1 overflow-hidden">
+      <div className="flex flex-col lg:flex-row flex-1 lg:overflow-hidden">
 
-        {/* Left: info + editor */}
-        <div className="lg:w-72 xl:w-80 shrink-0 flex flex-col"
+        {/* Left: info + editor — below previews on mobile */}
+        <div className="lg:w-72 xl:w-80 shrink-0 flex flex-col order-2 lg:order-1"
           style={{ background: "var(--surface)", borderRight: "1px solid var(--border)" }}>
-          <div className="p-5 border-b" style={{ borderColor: "var(--border)" }}>
+          <div className="p-4 border-b" style={{ borderColor: "var(--border)" }}>
             <div className="text-xs font-semibold mb-1" style={{ color: "var(--accent)" }}>⬛ CSS Grid</div>
-            <h1 className="font-black text-xl mb-2" style={{ color: "var(--text)" }}>{level.title}</h1>
+            <h1 className="font-black text-lg mb-1.5" style={{ color: "var(--text)" }}>{level.title}</h1>
             <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}
               dangerouslySetInnerHTML={{ __html: richDesc }} />
           </div>
-          <div className="p-4 flex flex-col gap-3 flex-1">
+          <div className="p-4 flex flex-col gap-3">
             <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--muted)" }}>
               {level.editTarget === "container" ? "Container CSS" : `Item ${level.editorLabel ?? `#${(level.editTarget as number) + 1}`} CSS`}
             </div>
@@ -286,13 +282,12 @@ export default function GridGameClient({ level, totalLevels }: Props) {
                 {lockedStr.split("\n").map((l, i) => <div key={i}>{l}</div>)}
               </div>
             )}
-            <motion.div animate={shake ? { x: [0, -7, 7, -7, 7, 0] } : { x: 0 }}
-              transition={{ duration: 0.4 }} className="relative flex-1">
+            <motion.div animate={shake ? { x: [0, -7, 7, -7, 7, 0] } : { x: 0 }} transition={{ duration: 0.4 }}>
               <textarea ref={textareaRef} value={userInput} onChange={e => setUserInput(e.target.value)}
                 placeholder={"/* type your CSS here */\ngrid-template-columns: 1fr 1fr;"}
                 className="w-full p-4 rounded-xl text-sm resize-none outline-none transition-all"
                 style={{
-                  minHeight: 160, height: "100%",
+                  minHeight: 120,
                   background: "var(--code-bg)",
                   border: `1.5px solid ${shake ? "var(--error)" : "var(--border-accent)"}`,
                   color: "var(--accent)", fontFamily: "var(--font-mono)", lineHeight: 1.8,
@@ -302,7 +297,7 @@ export default function GridGameClient({ level, totalLevels }: Props) {
             <button onClick={handleCheck}
               className="w-full py-3 rounded-xl font-bold text-sm transition-all hover:opacity-90 active:scale-95"
               style={{ background: "var(--accent)", color: "#fff", boxShadow: "var(--shadow-md)" }}>
-              Check ⌘↵
+              Check ✓
             </button>
             {shake && <p className="text-xs text-center" style={{ color: "var(--error)" }}>Not quite — check your values!</p>}
             {wrongAttempts >= 3 && !solved && (
@@ -315,10 +310,10 @@ export default function GridGameClient({ level, totalLevels }: Props) {
           </div>
         </div>
 
-        {/* Right: Target + Preview */}
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-5 p-5 overflow-auto"
+        {/* Right: Target + Preview — first on mobile */}
+        <div className="flex-1 grid grid-cols-2 gap-3 p-3 sm:gap-5 sm:p-5 overflow-auto order-1 lg:order-2"
           style={{ background: "var(--bg)" }}>
-          <div className="flex flex-col gap-2.5">
+          <div className="flex flex-col gap-2">
             <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--muted)" }}>🎯 Target</div>
             <GridContainer
               containerCSS={{ ...level.lockedCSS, ...level.targetContainerCSS }}
@@ -327,7 +322,7 @@ export default function GridGameClient({ level, totalLevels }: Props) {
               height={level.containerHeight}
             />
           </div>
-          <div className="flex flex-col gap-2.5">
+          <div className="flex flex-col gap-2">
             <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--muted)" }}>✏️ Yours</div>
             <GridContainer
               containerCSS={previewContainerCSS}

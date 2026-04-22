@@ -258,10 +258,10 @@ export default function MediaGameClient({ level, totalLevels }: Props) {
     <div className="flex flex-col" style={{ minHeight: "100dvh", paddingTop: 72 }}>
 
       {/* Top bar */}
-      <div className="flex items-center justify-between px-4 py-2.5 shrink-0"
+      <div className="flex items-center justify-between px-3 py-2 shrink-0"
         style={{ background: "var(--surface)", borderBottom: "1px solid var(--border)", boxShadow: "var(--shadow-sm)" }}>
-        <div className="flex items-center gap-3 min-w-0">
-          <Link href="/play/media" className="text-sm opacity-50 hover:opacity-100 shrink-0" style={{ color: "var(--text)" }}>← @media</Link>
+        <div className="flex items-center gap-2 min-w-0">
+          <Link href="/play/media" className="text-sm opacity-50 hover:opacity-100 shrink-0" style={{ color: "var(--text)" }}>←<span className="hidden sm:inline"> @media</span></Link>
           <div className="w-px h-4 shrink-0" style={{ background: "var(--border)" }} />
           <ChapterProgress level={level} progress={progress} />
           <span className="text-xs px-2 py-0.5 rounded-full shrink-0"
@@ -271,23 +271,23 @@ export default function MediaGameClient({ level, totalLevels }: Props) {
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <button onClick={handleShare}
-            className="text-xs px-3 py-1.5 rounded-lg transition-all hover:opacity-80"
+            className="text-xs px-2.5 py-1.5 rounded-lg transition-all hover:opacity-80"
             style={{ background: "var(--card)", color: "var(--muted)", border: "1px solid var(--border)" }}>
-            📤 Share
+            <span>📤</span><span className="hidden sm:inline"> Share</span>
           </button>
           <button onClick={() => setShowHint(true)}
-            className="text-xs px-3 py-1.5 rounded-lg transition-all hover:opacity-80"
+            className="text-xs px-2.5 py-1.5 rounded-lg transition-all hover:opacity-80"
             style={{ background: "var(--card)", color: "var(--muted)", border: "1px solid var(--border)" }}>
-            💡 Hint
+            <span>💡</span><span className="hidden sm:inline"> Hint</span>
           </button>
         </div>
       </div>
 
       {/* Main layout */}
-      <div className="flex flex-col lg:flex-row flex-1 overflow-hidden">
+      <div className="flex flex-col lg:flex-row flex-1 lg:overflow-hidden">
 
-        {/* Left panel */}
-        <div className="lg:w-80 xl:w-96 shrink-0 flex flex-col"
+        {/* Left panel — editor (below previews on mobile) */}
+        <div className="order-2 lg:order-1 lg:w-80 xl:w-96 shrink-0 flex flex-col"
           style={{ background: "var(--surface)", borderRight: "1px solid var(--border)" }}>
           <div className="p-5 border-b" style={{ borderColor: "var(--border)" }}>
             <div className="text-xs font-semibold mb-1" style={{ color: "#f43f5e" }}>📱 @media</div>
@@ -318,7 +318,7 @@ export default function MediaGameClient({ level, totalLevels }: Props) {
                 placeholder={placeholder}
                 className="w-full p-4 rounded-xl text-sm resize-none outline-none transition-all"
                 style={{
-                  minHeight: 140, height: "100%",
+                  minHeight: 120,
                   background: "var(--code-bg)",
                   border: `1.5px solid ${shake ? "var(--error)" : "rgba(244,63,94,0.3)"}`,
                   color: "#f43f5e", fontFamily: "var(--font-mono)", lineHeight: 1.8,
@@ -342,26 +342,29 @@ export default function MediaGameClient({ level, totalLevels }: Props) {
           </div>
         </div>
 
-        {/* Right: 2×2 preview grid */}
-        <div className="flex-1 p-5 overflow-auto" style={{ background: "var(--bg)" }}>
+        {/* Right: 2×2 preview grid (shown first on mobile) */}
+        <div className="order-1 lg:order-2 flex-1 p-3 sm:p-5 overflow-auto" style={{ background: "var(--bg)" }}>
           {/* Viewport labels — highlight which side the breakpoint fires on */}
-          <div className="grid grid-cols-2 gap-4 mb-2">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-2">
             {[
-              { label: `📱 Mobile (${MOBILE_W}px)`, active: !isMinWidth },
-              { label: `🖥 Desktop (${DESKTOP_W}px)`, active: isMinWidth },
-            ].map(({ label, active }) => (
-              <div key={label} className="text-xs font-bold text-center px-3 py-1.5 rounded-full"
+              { label: `📱 Mobile`, labelFull: `📱 Mobile (${MOBILE_W}px)`, active: !isMinWidth },
+              { label: `🖥 Desktop`, labelFull: `🖥 Desktop (${DESKTOP_W}px)`, active: isMinWidth },
+            ].map(({ label, labelFull, active }) => (
+              <div key={labelFull} className="text-xs font-bold text-center px-2 py-1.5 rounded-full"
                 style={{
                   background: active ? "rgba(244,63,94,0.08)" : "var(--card)",
                   color: active ? "#f43f5e" : "var(--muted)",
                   border: `1px solid ${active ? "rgba(244,63,94,0.2)" : "var(--border)"}`,
                 }}>
-                {label} {active && "← media fires here"}
+                <span className="sm:hidden">{label}</span>
+                <span className="hidden sm:inline">{labelFull}</span>
+                {active && <span className="hidden sm:inline"> ← media fires here</span>}
+                {active && <span className="sm:hidden"> ✦</span>}
               </div>
             ))}
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4">
             <PreviewBox css={targetMobileCSS} items={level.items} height={level.containerHeight} label="Target" isTarget={true} />
             <PreviewBox css={targetDesktopCSS} items={level.items} height={level.containerHeight} label="Target" isTarget={true} />
             <PreviewBox css={yoursMobileCSS} items={level.items} height={level.containerHeight} label="Yours" isTarget={false} />

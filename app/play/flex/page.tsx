@@ -4,7 +4,20 @@ import LevelSelectClient from "@/app/play/LevelSelectClient";
 
 export const metadata = {
   title: "CSS Flexbox Challenges — CSSLab",
-  description: "Master CSS Flexbox through 20 interactive challenges.",
+  description: "Master CSS Flexbox through 20 interactive challenges. Learn display:flex, justify-content, align-items, flex-wrap and more with live previews.",
+  alternates: { canonical: "https://flexlab-jade.vercel.app/play/flex" },
+  openGraph: {
+    title: "CSS Flexbox Challenges — CSSLab",
+    description: "20 interactive Flexbox challenges with live previews. From display:flex to real-world layouts.",
+    url: "https://flexlab-jade.vercel.app/play/flex",
+    siteName: "CSSLab",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CSS Flexbox Challenges — CSSLab",
+    description: "20 interactive Flexbox challenges with live previews.",
+  },
 };
 
 export default function FlexPlayPage() {

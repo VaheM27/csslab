@@ -17,9 +17,24 @@ export async function generateMetadata({
   const { level } = await params;
   const lvl = getLevelById(Number(level));
   if (!lvl) return {};
+  const desc = lvl.description.replace(/\*\*/g, "").replace(/`/g, "");
+  const url = `https://flexlab-jade.vercel.app/play/${lvl.id}`;
   return {
-    title: `Level ${lvl.id}: ${lvl.title} — FlexLab`,
-    description: lvl.description.replace(/\*\*/g, "").replace(/`/g, ""),
+    title: `Level ${lvl.id}: ${lvl.title} — Flexbox · CSSLab`,
+    description: desc,
+    alternates: { canonical: url },
+    openGraph: {
+      title: `Level ${lvl.id}: ${lvl.title} — CSS Flexbox`,
+      description: desc,
+      url,
+      siteName: "CSSLab",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Level ${lvl.id}: ${lvl.title} — CSS Flexbox · CSSLab`,
+      description: desc,
+    },
   };
 }
 
