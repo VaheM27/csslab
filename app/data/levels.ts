@@ -23,16 +23,17 @@ export interface Level {
   editTarget: EditTarget;
   checkProps: Record<string, string[]>;
   editorLabel?: string;
+  solution: string;
 }
 
 const COLORS = [
-  "#059669",
-  "#0d9488",
-  "#0891b2",
-  "#15803d",
-  "#0369a1",
-  "#047857",
-  "#0e7490",
+  "#8b5cf6",
+  "#0ea5e9",
+  "#f43f5e",
+  "#f97316",
+  "#10b981",
+  "#a855f7",
+  "#06b6d4",
 ];
 
 function makeItems(count: number, options?: { heights?: number[] }): FlexItem[] {
@@ -66,6 +67,7 @@ export const levels: Level[] = [
     lockedCSS: {},
     editTarget: "container",
     checkProps: { display: ["flex"] },
+    solution: 'display: flex;',
   },
   {
     id: 2,
@@ -83,6 +85,7 @@ export const levels: Level[] = [
     lockedCSS: { display: "flex" },
     editTarget: "container",
     checkProps: { flexDirection: ["column"] },
+    solution: 'flex-direction: column;',
   },
   {
     id: 3,
@@ -100,6 +103,7 @@ export const levels: Level[] = [
     lockedCSS: { display: "flex" },
     editTarget: "container",
     checkProps: { flexDirection: ["row-reverse"] },
+    solution: 'flex-direction: row-reverse;',
   },
 
   // ─────────────────────────────────────────────
@@ -121,6 +125,7 @@ export const levels: Level[] = [
     lockedCSS: { display: "flex" },
     editTarget: "container",
     checkProps: { justifyContent: ["flex-end", "end"] },
+    solution: 'justify-content: flex-end;',
   },
   {
     id: 5,
@@ -138,6 +143,7 @@ export const levels: Level[] = [
     lockedCSS: { display: "flex" },
     editTarget: "container",
     checkProps: { justifyContent: ["center"] },
+    solution: 'justify-content: center;',
   },
   {
     id: 6,
@@ -155,6 +161,7 @@ export const levels: Level[] = [
     lockedCSS: { display: "flex" },
     editTarget: "container",
     checkProps: { justifyContent: ["space-between"] },
+    solution: 'justify-content: space-between;',
   },
   {
     id: 7,
@@ -172,6 +179,7 @@ export const levels: Level[] = [
     lockedCSS: { display: "flex" },
     editTarget: "container",
     checkProps: { justifyContent: ["space-around"] },
+    solution: 'justify-content: space-around;',
   },
   {
     id: 8,
@@ -189,6 +197,7 @@ export const levels: Level[] = [
     lockedCSS: { display: "flex" },
     editTarget: "container",
     checkProps: { justifyContent: ["space-evenly"] },
+    solution: 'justify-content: space-evenly;',
   },
 
   // ─────────────────────────────────────────────
@@ -210,6 +219,7 @@ export const levels: Level[] = [
     lockedCSS: { display: "flex" },
     editTarget: "container",
     checkProps: { alignItems: ["flex-end", "end"] },
+    solution: 'align-items: flex-end;',
   },
   {
     id: 10,
@@ -227,6 +237,7 @@ export const levels: Level[] = [
     lockedCSS: { display: "flex" },
     editTarget: "container",
     checkProps: { alignItems: ["center"] },
+    solution: 'align-items: center;',
   },
   {
     id: 11,
@@ -244,6 +255,7 @@ export const levels: Level[] = [
     lockedCSS: { display: "flex" },
     editTarget: "container",
     checkProps: { alignItems: ["stretch"] },
+    solution: 'align-items: stretch;',
   },
   {
     id: 12,
@@ -268,6 +280,7 @@ export const levels: Level[] = [
       justifyContent: ["center"],
       alignItems: ["center"],
     },
+    solution: 'justify-content: center;\nalign-items: center;',
   },
 
   // ─────────────────────────────────────────────
@@ -293,6 +306,7 @@ export const levels: Level[] = [
     lockedCSS: { display: "flex" },
     editTarget: "container",
     checkProps: { flexWrap: ["wrap"] },
+    solution: 'flex-wrap: wrap;',
   },
   {
     id: 14,
@@ -310,6 +324,7 @@ export const levels: Level[] = [
     lockedCSS: { display: "flex" },
     editTarget: "container",
     checkProps: { gap: ["16px"] },
+    solution: 'gap: 16px;',
   },
 
   // ─────────────────────────────────────────────
@@ -336,6 +351,7 @@ export const levels: Level[] = [
     editTarget: 1,
     editorLabel: "Item B",
     checkProps: { flexGrow: ["1"] },
+    solution: 'flex-grow: 1;',
   },
   {
     id: 16,
@@ -355,6 +371,7 @@ export const levels: Level[] = [
     editTarget: 0,
     editorLabel: "Item A",
     checkProps: { flexBasis: ["200px"] },
+    solution: 'flex-basis: 200px;',
   },
   {
     id: 17,
@@ -374,6 +391,7 @@ export const levels: Level[] = [
     editTarget: 2,
     editorLabel: "Item C",
     checkProps: { order: ["-1", "-2", "-3"] },
+    solution: 'order: -1;',
   },
   {
     id: 18,
@@ -393,6 +411,7 @@ export const levels: Level[] = [
     editTarget: 1,
     editorLabel: "Item B",
     checkProps: { alignSelf: ["flex-end", "end"] },
+    solution: 'align-self: flex-end;',
   },
 
   // ─────────────────────────────────────────────
@@ -426,6 +445,7 @@ export const levels: Level[] = [
       justifyContent: ["space-between"],
       alignItems: ["center"],
     },
+    solution: 'justify-content: space-between;\nalign-items: center;',
   },
   {
     id: 20,
@@ -453,6 +473,7 @@ export const levels: Level[] = [
     checkProps: {
       justifyContent: ["space-between"],
     },
+    solution: 'justify-content: space-between;',
   },
 ];
 
