@@ -19,19 +19,25 @@ export default function Navbar() {
             className="w-7 h-7 rounded-lg flex items-center justify-center font-black text-xs"
             style={{ background: "var(--accent)", color: "#fff" }}
           >
-            F
+            C
           </div>
           <span className="font-bold text-sm" style={{ color: "var(--text)" }}>
-            Flex<span style={{ color: "var(--accent)" }}>Lab</span>
+            CSS<span style={{ color: "var(--accent)" }}>Lab</span>
           </span>
         </Link>
 
         <div className="w-px h-4 mx-1" style={{ background: "var(--border)" }} />
 
-        <Link href="/play" className="px-4 py-1.5 rounded-full text-sm font-medium transition-all hover:opacity-70" style={{ color: "var(--muted)" }}>
-          Levels
+        <Link href="/play/flex" className="px-3 py-1.5 rounded-full text-sm font-medium transition-all hover:opacity-70" style={{ color: "var(--muted)" }}>
+          Flex
         </Link>
-        <Link href="/sandbox" className="px-4 py-1.5 rounded-full text-sm font-medium transition-all hover:opacity-70" style={{ color: "var(--muted)" }}>
+        <Link href="/play/grid" className="px-3 py-1.5 rounded-full text-sm font-medium transition-all hover:opacity-70" style={{ color: "var(--muted)" }}>
+          Grid
+        </Link>
+        <Link href="/play/media" className="px-3 py-1.5 rounded-full text-sm font-medium transition-all hover:opacity-70" style={{ color: "var(--muted)" }}>
+          @media
+        </Link>
+        <Link href="/sandbox" className="px-3 py-1.5 rounded-full text-sm font-medium transition-all hover:opacity-70 hidden sm:block" style={{ color: "var(--muted)" }}>
           Sandbox
         </Link>
 
@@ -40,11 +46,11 @@ export default function Navbar() {
         <ThemeToggle />
 
         <Link
-          href="/play/1"
+          href="/play"
           className="ml-2 px-4 py-1.5 rounded-full text-sm font-semibold transition-all hover:opacity-90 glow-accent"
           style={{ background: "var(--accent)", color: "#fff" }}
         >
-          Play Now
+          Play
         </Link>
       </div>
     </nav>

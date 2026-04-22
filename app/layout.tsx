@@ -7,21 +7,21 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 const BASE_URL = "https://flexlab-jade.vercel.app";
 
 export const metadata: Metadata = {
-  title: "FlexLab — Learn CSS Flexbox by Playing",
-  description: "Master CSS Flexbox through 20 interactive challenges. Live previews, axis visualization, and real explanations.",
-  keywords: ["CSS Flexbox", "learn flexbox", "flexbox game", "CSS tutorial", "web development"],
+  title: "CSSLab — Learn CSS by Playing",
+  description: "Master CSS Flexbox, Grid, and @media queries through 45 interactive challenges. Live previews, visual explanations, and real examples.",
+  keywords: ["CSS Flexbox", "CSS Grid", "media queries", "learn CSS", "CSS game", "CSS tutorial", "web development"],
   metadataBase: new URL(BASE_URL),
   openGraph: {
-    title: "FlexLab — Learn CSS Flexbox by Playing",
-    description: "Master CSS Flexbox through 20 interactive challenges with live previews and axis visualization.",
+    title: "CSSLab — Learn CSS by Playing",
+    description: "Master Flexbox, Grid, and @media queries through 45 interactive challenges with live previews.",
     type: "website",
     url: BASE_URL,
-    siteName: "FlexLab",
+    siteName: "CSSLab",
   },
   twitter: {
     card: "summary_large_image",
-    title: "FlexLab — Learn CSS Flexbox by Playing",
-    description: "Master CSS Flexbox through 20 interactive challenges.",
+    title: "CSSLab — Learn CSS by Playing",
+    description: "Master Flexbox, Grid, and @media queries through 45 interactive challenges.",
   },
 };
 
