@@ -12,15 +12,25 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const BASE_URL = "https://flexlab-jade.vercel.app";
+
 export const metadata: Metadata = {
   title: "FlexLab — Learn CSS Flexbox by Playing",
   description:
     "Master CSS Flexbox through 20 interactive challenges. See axis visualization, live previews, and real explanations. Better than Flexbox Froggy.",
   keywords: ["CSS Flexbox", "learn flexbox", "flexbox game", "CSS tutorial", "web development"],
+  metadataBase: new URL(BASE_URL),
   openGraph: {
     title: "FlexLab — Learn CSS Flexbox by Playing",
     description: "Master CSS Flexbox through 20 interactive challenges with live previews and axis visualization.",
     type: "website",
+    url: BASE_URL,
+    siteName: "FlexLab",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FlexLab — Learn CSS Flexbox by Playing",
+    description: "Master CSS Flexbox through 20 interactive challenges with live previews and axis visualization.",
   },
 };
 
