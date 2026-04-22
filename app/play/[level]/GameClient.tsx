@@ -50,7 +50,7 @@ function FlexContainer({
   const isColumn = direction.includes("column");
 
   return (
-    <div className="relative w-full" style={{ height }}>
+    <div className="relative w-full" style={{ minHeight: height }}>
       {/* Axis overlay */}
       {showAxis && (
         <div className="absolute inset-0 pointer-events-none z-10">
@@ -118,13 +118,14 @@ function FlexContainer({
 
       {/* Flex container */}
       <div
-        className="w-full h-full rounded-lg overflow-hidden"
+        className="w-full rounded-lg"
         style={{
           ...toInlineStyle(containerCSS),
-          height,
+          minHeight: height,
           background: "var(--surface)",
           border: "1px solid var(--border)",
           padding: 8,
+          overflow: "visible",
         }}
       >
         {items.map((item, i) => (
