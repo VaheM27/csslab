@@ -33,7 +33,7 @@ export default function FlexPlayPage() {
             </h1>
           </div>
           <p className="mb-10" style={{ color: "var(--muted)" }}>
-            20 levels · 6 chapters · from display:flex to real-world layouts
+            25 levels · 7 chapters · from display:flex to real-world layouts
           </p>
           <LevelSelectClient levels={levels} />
         </div>

@@ -33,7 +33,7 @@ export default function GridPlayPage() {
             </h1>
           </div>
           <p className="mb-10" style={{ color: "var(--muted)" }}>
-            15 levels · 5 chapters · from display:grid to responsive auto-fill layouts
+            20 levels · 6 chapters · from display:grid to responsive auto-fill layouts
           </p>
           <GridLevelSelectClient levels={gridLevels} />
         </div>

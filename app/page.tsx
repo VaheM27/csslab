@@ -3,12 +3,24 @@
 import Link from "next/link";
 import Navbar from "./components/Navbar";
 import { motion, type Variants } from "framer-motion";
+import { ArrowLeftRight, LayoutGrid, Smartphone, Zap, Ruler, Lightbulb, Flame, Sparkles, FlaskConical, type LucideIcon } from "lucide-react";
 
-const modules = [
+const modules: {
+  icon: LucideIcon;
+  title: string;
+  subtitle: string;
+  color: string;
+  colorDim: string;
+  colorBorder: string;
+  description: string;
+  tags: string[];
+  href: string;
+  demo: { code: string; items: { label: string; color: string }[]; style: React.CSSProperties };
+}[] = [
   {
-    emoji: "↔️",
+    icon: ArrowLeftRight,
     title: "CSS Flexbox",
-    subtitle: "20 levels · 6 chapters",
+    subtitle: "25 levels · 7 chapters",
     color: "#0ea5e9",
     colorDim: "rgba(14,165,233,0.08)",
     colorBorder: "rgba(14,165,233,0.15)",
@@ -26,9 +38,9 @@ const modules = [
     },
   },
   {
-    emoji: "⬛",
+    icon: LayoutGrid,
     title: "CSS Grid",
-    subtitle: "15 levels · 5 chapters",
+    subtitle: "20 levels · 6 chapters",
     color: "#8b5cf6",
     colorDim: "rgba(139,92,246,0.08)",
     colorBorder: "rgba(139,92,246,0.15)",
@@ -49,9 +61,9 @@ const modules = [
     },
   },
   {
-    emoji: "📱",
+    icon: Smartphone,
     title: "@media Queries",
-    subtitle: "10 levels · 3 chapters",
+    subtitle: "15 levels · 4 chapters",
     color: "#f43f5e",
     colorDim: "rgba(244,63,94,0.08)",
     colorBorder: "rgba(244,63,94,0.15)",
@@ -69,13 +81,13 @@ const modules = [
   },
 ];
 
-const features = [
-  { icon: "⚡", title: "Live Preview", description: "See your CSS applied as you type — no refresh, no guessing." },
-  { icon: "📐", title: "Visual Explanations", description: "Axis overlays, grid lines, and breakpoint simulations make it click." },
-  { icon: "💡", title: "Why It Works", description: "Every level ends with a clear explanation of the concept, not just the answer." },
-  { icon: "🔥", title: "Progress & Streaks", description: "Track which levels you've completed and build a learning streak." },
-  { icon: "🎊", title: "Satisfying Feedback", description: "Confetti, sounds, and animations make every solved level feel good." },
-  { icon: "🧪", title: "Sandbox Mode", description: "Free-play to experiment with any CSS combination, no pressure." },
+const features: { icon: LucideIcon; title: string; description: string }[] = [
+  { icon: Zap,          title: "Live Preview",         description: "See your CSS applied as you type — no refresh, no guessing." },
+  { icon: Ruler,        title: "Visual Explanations",  description: "Axis overlays, grid lines, and breakpoint simulations make it click." },
+  { icon: Lightbulb,    title: "Why It Works",          description: "Every level ends with a clear explanation of the concept, not just the answer." },
+  { icon: Flame,        title: "Progress & Streaks",   description: "Track which levels you've completed and build a learning streak." },
+  { icon: Sparkles,     title: "Satisfying Feedback",  description: "Confetti, sounds, and animations make every solved level feel good." },
+  { icon: FlaskConical, title: "Sandbox Mode",         description: "Free-play to experiment with Flex, Grid, and @media — no pressure." },
 ];
 
 const fadeUp: Variants = {
@@ -108,7 +120,7 @@ export default function Home() {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-8"
             style={{ background: "var(--accent-dim)", border: "1px solid var(--border-accent)", color: "var(--accent)" }}>
             <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--accent)" }} />
-            45 Interactive Challenges · 3 CSS Topics
+            60 Interactive Challenges · 3 CSS Topics
           </motion.div>
 
           {/* Headline */}
@@ -148,8 +160,8 @@ export default function Home() {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="mt-16 flex gap-6 flex-wrap justify-center">
             {[
-              { n: "45", label: "Levels" },
-              { n: "14", label: "Chapters" },
+              { n: "60", label: "Levels" },
+              { n: "17", label: "Chapters" },
               { n: "3", label: "CSS Topics" },
             ].map((s) => (
               <div key={s.label} className="flex flex-col items-center">
@@ -187,9 +199,9 @@ export default function Home() {
                       boxShadow: "var(--shadow-sm)",
                     }}>
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl"
+                      <div className="w-10 h-10 rounded-xl flex items-center justify-center"
                         style={{ background: mod.colorDim, border: `1px solid ${mod.colorBorder}` }}>
-                        {mod.emoji}
+                        <mod.icon size={20} color={mod.color} strokeWidth={2} />
                       </div>
                       <div>
                         <h3 className="font-black text-lg leading-tight" style={{ color: "var(--text)" }}>{mod.title}</h3>
@@ -256,7 +268,10 @@ export default function Home() {
                     whileHover={{ y: -3, transition: { duration: 0.15 } }}
                     className="rounded-2xl p-5 transition-all"
                     style={{ background: "var(--card)", border: "1px solid var(--border)", boxShadow: "var(--shadow-sm)", cursor: "default" }}>
-                    <div className="text-2xl mb-3">{f.icon}</div>
+                    <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-3"
+                      style={{ background: "var(--accent-dim)", border: "1px solid var(--border-accent)" }}>
+                      <f.icon size={18} color="var(--accent)" strokeWidth={2} />
+                    </div>
                     <h3 className="font-bold mb-1.5" style={{ color: "var(--text)" }}>{f.title}</h3>
                     <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>{f.description}</p>
                   </motion.div>

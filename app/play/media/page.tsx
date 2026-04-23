@@ -33,7 +33,7 @@ export default function MediaPlayPage() {
             </h1>
           </div>
           <p className="mb-10" style={{ color: "var(--muted)" }}>
-            10 levels · 3 chapters · from your first breakpoint to responsive grid layouts
+            15 levels · 4 chapters · from your first breakpoint to responsive grid layouts
           </p>
           <MediaLevelSelectClient levels={mediaLevels} />
         </div>
