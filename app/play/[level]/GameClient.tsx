@@ -221,7 +221,7 @@ function SuccessOverlay({ onNext, isLast, explanation, streak }: {
               className="w-full py-3.5 rounded-xl font-bold transition-all hover:opacity-90 active:scale-95 flex items-center justify-center gap-3"
               style={{ background: "var(--accent)", color: "#fff" }}>
               Next Level →
-              <kbd className="text-xs px-1.5 py-0.5 rounded font-mono opacity-60 leading-none"
+              <kbd className="inline-flex items-center text-xs px-1.5 py-0.5 rounded font-mono opacity-60 leading-none"
                 style={{ background: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.3)" }}>
                 ↵
               </kbd>
@@ -466,7 +466,7 @@ export default function GameClient({ level, totalLevels }: Props) {
               className="w-full py-3 rounded-xl font-bold text-sm transition-all hover:opacity-90 active:scale-95 flex items-center justify-center gap-2"
               style={{ background: "var(--accent)", color: "#fff", boxShadow: "var(--shadow-md)" }}>
               Check ✓
-              <kbd className="text-xs px-1.5 py-0.5 rounded font-mono opacity-60 leading-none"
+              <kbd className="inline-flex items-center text-xs px-1.5 py-0.5 rounded font-mono opacity-60 leading-none"
                 style={{ background: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.3)" }}>
                 {modKey}↵
               </kbd>
