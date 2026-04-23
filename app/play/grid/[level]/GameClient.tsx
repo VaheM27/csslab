@@ -97,6 +97,12 @@ function ChapterProgress({ level, progress }: { level: GridLevel; progress: Reco
 function SuccessOverlay({ onNext, isLast, explanation, streak }: {
   onNext: () => void; isLast: boolean; explanation: string; streak: number;
 }) {
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === "Enter" && !isLast) onNext(); };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [onNext, isLast]);
+
   const rich = explanation
     .replace(/\*\*(.*?)\*\*/g, '<strong style="color:var(--text)">$1</strong>')
     .replace(/`(.*?)`/g, '<code style="color:var(--accent);font-family:var(--font-mono);font-size:11px;background:var(--accent-dim);padding:1px 5px;border-radius:4px">$1</code>');
@@ -128,9 +134,11 @@ function SuccessOverlay({ onNext, isLast, explanation, streak }: {
             </Link>
           ) : (
             <button onClick={onNext}
-              className="w-full py-3.5 rounded-xl font-bold transition-all hover:opacity-90 active:scale-95"
+              className="w-full py-3.5 rounded-xl font-bold transition-all hover:opacity-90 active:scale-95 flex items-center justify-center gap-3"
               style={{ background: "var(--accent)", color: "#fff" }}>
               Next Level →
+              <kbd className="text-xs px-1.5 py-0.5 rounded font-mono opacity-60"
+                style={{ background: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.3)" }}>↵</kbd>
             </button>
           )}
           <Link href="/play/grid"
@@ -165,7 +173,12 @@ export default function GridGameClient({ level, totalLevels }: Props) {
   const [toast, setToast] = useState<string | null>(null);
   const [progress, setProgress] = useState<Record<string, boolean>>({});
   const [streak, setStreak] = useState(0);
+  const [modKey, setModKey] = useState("⌘");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (!/Mac|iPhone|iPad|iPod/.test(navigator.platform)) setModKey("Ctrl");
+  }, []);
 
   const parsed = parseCSSInput(userInput);
   const previewContainerCSS = { ...level.lockedCSS, ...parsed };
@@ -295,9 +308,11 @@ export default function GridGameClient({ level, totalLevels }: Props) {
                 spellCheck={false} />
             </motion.div>
             <button onClick={handleCheck}
-              className="w-full py-3 rounded-xl font-bold text-sm transition-all hover:opacity-90 active:scale-95"
+              className="w-full py-3 rounded-xl font-bold text-sm transition-all hover:opacity-90 active:scale-95 flex items-center justify-center gap-2"
               style={{ background: "var(--accent)", color: "#fff", boxShadow: "var(--shadow-md)" }}>
               Check ✓
+              <kbd className="text-xs px-1.5 py-0.5 rounded font-mono opacity-60 leading-none"
+                style={{ background: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.3)" }}>{modKey}↵</kbd>
             </button>
             {shake && <p className="text-xs text-center" style={{ color: "var(--error)" }}>Not quite — check your values!</p>}
             {wrongAttempts >= 3 && !solved && (
