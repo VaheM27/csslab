@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { mediaLevels, MEDIA_TOTAL_LEVELS } from "@/app/data/mediaLevels";
 import MediaGameClient from "./GameClient";
+import Navbar from "@/app/components/Navbar";
 
 export function generateStaticParams() {
   return mediaLevels.map((l) => ({ level: String(l.id) }));
@@ -35,5 +36,10 @@ export default async function MediaLevelPage({ params }: { params: Promise<{ lev
   const { level } = await params;
   const levelData = mediaLevels.find((l) => l.id === Number(level));
   if (!levelData) notFound();
-  return <MediaGameClient level={levelData} totalLevels={MEDIA_TOTAL_LEVELS} />;
+  return (
+    <>
+      <Navbar />
+      <MediaGameClient level={levelData} totalLevels={MEDIA_TOTAL_LEVELS} />
+    </>
+  );
 }

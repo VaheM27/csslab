@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { gridLevels, GRID_TOTAL_LEVELS } from "@/app/data/gridLevels";
 import GridGameClient from "./GameClient";
+import Navbar from "@/app/components/Navbar";
 
 export function generateStaticParams() {
   return gridLevels.map((l) => ({ level: String(l.id) }));
@@ -35,5 +36,10 @@ export default async function GridLevelPage({ params }: { params: Promise<{ leve
   const { level } = await params;
   const levelData = gridLevels.find((l) => l.id === Number(level));
   if (!levelData) notFound();
-  return <GridGameClient level={levelData} totalLevels={GRID_TOTAL_LEVELS} />;
+  return (
+    <>
+      <Navbar />
+      <GridGameClient level={levelData} totalLevels={GRID_TOTAL_LEVELS} />
+    </>
+  );
 }
